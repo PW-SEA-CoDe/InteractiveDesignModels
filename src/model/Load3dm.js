@@ -17,7 +17,7 @@ loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/')
  * @param {string} url string: filepath
  * @param {bool} castShadow  bool: True to cast shadows
  * @param {bool} receiveShadow boo: True to receive shadows
- * @returns {dict} dict: objects(array)
+ * @returns dict: objects(array)
  */
 export default async function Fetch3DM(url, castShadow, receiveShadow) {
     return new Promise((resolve, reject) => {
@@ -59,11 +59,9 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             avgCenter.y = centerCalc.y / centerCalc.l
             avgCenter.z = centerCalc.z / centerCalc.l
 
-            console.log(object)
-            console.log(avgCenter)
-
             resolve({
                 object: object,
+                averageCenter: avgCenter,
             })
         })
     }, function(error) {
