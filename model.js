@@ -1,22 +1,24 @@
 import SceneInit from "./src/scene/SceneInit";
 import Fetch3DM from "./src/model/Load3dm";
-import { AmbientLight, DirectionalLight } from "./src/scene/Lighting";
+import { AmbientLight, DirectionalLight, PointLight } from "./src/scene/Lighting";
 
 //Scene
 const {scene, sceneContainer, renderer, camera, controls} = SceneInit()
 camera.position.set(500,500,500) 
 
 //Lighting
-let aLight, dLight
+let aLight, dLight, pLight
 aLight = AmbientLight('rgb(255,255,255)', 5.0)
 dLight = DirectionalLight('rgb(255,255,255)', 5.0, {x:500,y:500,z:200}, true)
+pLight = PointLight('rgb(255,255,255)', 500.0, 0, {x:200,y:200,z:200}, true)
 
 scene.add(aLight.light)
 scene.add(dLight.light)
+scene.add(pLight.light)
 
 //Models
 let model
-model = await Fetch3DM('assets/models/MixedUse-Tower-Massing-Model.3dm', true, true)
+model = await Fetch3DM('assets/models/MixedUse-Tower-Massing-Model.3dm', false, true)
 
 scene.add(model.object)
 

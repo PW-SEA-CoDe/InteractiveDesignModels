@@ -38,13 +38,14 @@ export function AmbientLight(color, intensity) {
  */
 export function DirectionalLight(color, intensity, pos, shadow) {
     let lColor, light
+    let sDetail = 1
     lColor = new THREE.Color( color )
     light = new THREE.DirectionalLight( lColor, intensity )
 
     light.position.set( pos.x, pos.y, pos.z )
     light.castShadow = shadow
-    light.shadow.mapSize.width = 1024 * 1
-    light.shadow.mapSize.height = 1024 * 1
+    light.shadow.mapSize.width = 1024 * sDetail           // LOD for shadows
+    light.shadow.mapSize.height = 1024 * sDetail          // LOD for shadows
     light.shadow.camera.near = 0.5
     light.shadow.camera.far = 10_000
     
@@ -52,6 +53,41 @@ export function DirectionalLight(color, intensity, pos, shadow) {
         light:  light,
     })
 }
+
+/**
+ * 
+ * @param {*} color string: rgb or hex value. Defines light color
+ * @param {*} intensity float: Defines light intensity
+ * @param {*} range float: Defines distance light is visible
+ * @param {*} pos dict(ints): Defines light position
+ * @param {*} shadow bool: Toggle whether light casts shadow
+ * @returns 
+ */
+export function PointLight(color, intensity, range, pos, shadow) {
+    let lColor, light, sDetail, helper
+    lColor = new THREE.Color( color )
+    light = new THREE.PointLight(lColor, intensity, range)
+    helper = new THREE.Mesh(
+        new THREE.SphereGeometry( 15, 32, 16),
+        new THREE.MeshBasicMaterial({color: color})
+    )
+    sDetail = 1
+    light.up = new THREE.Vector3(0,0,1)
+    light.position.set( pos.x, pos.y, pos.z )
+    light.castShadow = shadow
+    light.decay = 1.0
+    light.shadow.mapSize.width = (1024 * sDetail)         // LOD for shadows
+    light.shadow.mapSize.height = (1024 * sDetail)        // LOD for shadows
+    light.shadow.camera.near = 0.5
+    light.shadow.camera.far = 10_000
+    helper.position.set( pos.x, pos.y, pos.z )
+
+    return({
+        light: light,
+        helper: helper,
+    })
+}
+
 
 /**
  * Spotlight. Best used to cast shadows and for focused lighting on objects.
@@ -66,6 +102,7 @@ export function DirectionalLight(color, intensity, pos, shadow) {
  */
 export function Spotlight(color, intensity, pos, angle, shadow, showHelper) {
     let lColor, light, helper
+    let sDetail = 1
     lColor = new THREE.Color( color )
     light = new THREE.SpotLight(lColor)
     helper = new THREE.SpotLightHelper(light,'#000000')
@@ -76,8 +113,8 @@ export function Spotlight(color, intensity, pos, angle, shadow, showHelper) {
     light.angle = Math.pi / ( angle )
     light.penumbra = 0.5
     light.decay = 1.0
-    light.shadow.mapSize.width = 1024 * 1
-    light.shadow.mapSize.height = 1024 * 1
+    light.shadow.mapSize.width = 1024 * sDetail         // LOD for shadows
+    light.shadow.mapSize.height = 1024 * sDetail        // LOD for shadows
     light.shadow.camera.near = 0.5
     light.shadow.camera.far = 10_000
     helper.update()
