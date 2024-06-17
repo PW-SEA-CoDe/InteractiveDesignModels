@@ -10,11 +10,9 @@ camera.position.set(500,500,500)
 let aLight, dLight, pLight
 aLight = AmbientLight('rgb(255,255,255)', 5.0)
 dLight = DirectionalLight('rgb(255,255,255)', 5.0, {x:500,y:500,z:200}, true)
-pLight = PointLight('rgb(255,255,255)', 500.0, 0, {x:200,y:200,z:200}, true)
 
 scene.add(aLight.light)
 scene.add(dLight.light)
-scene.add(pLight.light)
 
 //Models
 let model
@@ -34,5 +32,3 @@ function animate() {
     render();
 }
 animate();
-
-console.log(scene)

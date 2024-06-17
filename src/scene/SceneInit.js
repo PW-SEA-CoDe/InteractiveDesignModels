@@ -14,6 +14,8 @@ export default function SceneInit() {
 
     // Core Three sceme components
     const scene = new THREE.Scene()
+    scene.up = new THREE.Vector3(0,0,1)
+    scene.name = 'Main_Scene'
 
     const renderer = new THREE.WebGLRenderer({
         antialias: true,                                    // Pixel smoothing
@@ -41,6 +43,9 @@ export default function SceneInit() {
     controls.target = new THREE.Vector3(0,0,0)
     controls.enableDamping = true                           // Damping for smooth camera movement
     controls.dampingFactor = 0.05                           // Damping strength, 1 is max 0 is min
+
+    console.log(scene)
+    console.log(controls)
 
     return {
         scene:          scene,

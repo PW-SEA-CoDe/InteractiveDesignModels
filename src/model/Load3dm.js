@@ -30,13 +30,37 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         }
 
         loader.load( url, function(object) {
+            let centerCalc, avgCenter
+            centerCalc = {
+                x: 0,
+                y: 0,
+                z: 0,
+                l: 0
+            }
+            avgCenter = {
+                x: 0,
+                y: 0,
+                z: 0
+            }
+            
+            object.up = new THREE.Vector3(0,0,1)
+
             object.children.forEach(child => {
-                console.log(child)
-                console.log(child.userData.attributes)
-                console.log(child.userData.attributes.groupIds)
                 child.castShadow = castShadow
                 child.receiveShadow = receiveShadow
+                child.geometry.computeBoundingSphere()
+                centerCalc.x += child.geometry.boundingSphere.center.x
+                centerCalc.y += child.geometry.boundingSphere.center.y
+                centerCalc.z += child.geometry.boundingSphere.center.z
+                centerCalc.l += 1
             })
+
+            avgCenter.x = centerCalc.x / centerCalc.l
+            avgCenter.y = centerCalc.y / centerCalc.l
+            avgCenter.z = centerCalc.z / centerCalc.l
+
+            console.log(object)
+            console.log(avgCenter)
 
             resolve({
                 object: object,
