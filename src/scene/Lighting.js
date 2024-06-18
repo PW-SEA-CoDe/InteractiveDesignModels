@@ -126,3 +126,38 @@ export function Spotlight(color, intensity, pos, angle, shadow, showHelper) {
 }
 
 //Complex Lighting Paradigms
+
+/**
+ * Three Point Lighting. Typically used in movie sets to evenly light target.
+ * 
+ * @param {string} color string: rgb or hex value. Defines light color
+ * @param {float} intensity float: Defines light intensity
+ * @param {dict} pos dict(ints): Defines light position
+ * @param {bool} shadow bool: Toggle whether light casts shadow
+ * @returns dict: lightA(obj), lightB(obj), lightC(obj)
+ */
+export function ThreePointLight(color, intensity, pos, shadow) {
+    let kColor, fColor, rColor
+    let kLight, fLight, rLight
+
+    kColor = new THREE.Color( color )
+    kLight = new THREE.DirectionalLight(kColor, intensity)
+    kLight.position.set( pos.x, pos.y, pos.z )
+    kLight.castShadow = shadow
+
+    fColor = new THREE.Color( color )
+    fLight = new THREE.DirectionalLight(fColor, (intensity * 0.5))
+    fLight.position.set( -pos.x, pos.y, pos.z )
+    fLight.castShadow = false
+
+    rColor = new THREE.Color( color )
+    rLight = new THREE.DirectionalLight(rColor, (intensity * 0.85))
+    rLight.position.set( -pos.x, -pos.y, pos.z )
+    rLight.castShadow = false
+
+    return ({
+        lightA: kLight,
+        lightB: fLight,
+        lightC: rLight
+    })
+}

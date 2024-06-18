@@ -17,7 +17,7 @@ loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/')
  * @param {string} url string: filepath
  * @param {bool} castShadow  bool: True to cast shadows
  * @param {bool} receiveShadow boo: True to receive shadows
- * @returns dict: objects(array)
+ * @returns dict: object(obj), averageCenter(Vector3)
  */
 export default async function Fetch3DM(url, castShadow, receiveShadow) {
     return new Promise((resolve, reject) => {
@@ -30,34 +30,26 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         }
 
         loader.load( url, function(object) {
-            let centerCalc, avgCenter
-            centerCalc = {
-                x: 0,
-                y: 0,
-                z: 0,
-                l: 0
-            }
+            let avgCenter
             avgCenter = {
                 x: 0,
                 y: 0,
                 z: 0
             }
-            
             object.up = new THREE.Vector3(0,0,1)
 
             object.children.forEach(child => {
                 child.castShadow = castShadow
                 child.receiveShadow = receiveShadow
                 child.geometry.computeBoundingSphere()
-                centerCalc.x += child.geometry.boundingSphere.center.x
-                centerCalc.y += child.geometry.boundingSphere.center.y
-                centerCalc.z += child.geometry.boundingSphere.center.z
-                centerCalc.l += 1
+                avgCenter.x += child.geometry.boundingSphere.center.x
+                avgCenter.y += child.geometry.boundingSphere.center.y
+                avgCenter.z += child.geometry.boundingSphere.center.z
             })
 
-            avgCenter.x = centerCalc.x / centerCalc.l
-            avgCenter.y = centerCalc.y / centerCalc.l
-            avgCenter.z = centerCalc.z / centerCalc.l
+            avgCenter.x = avgCenter.x / object.children.length
+            avgCenter.y = avgCenter.y / object.children.length
+            avgCenter.z = avgCenter.z / object.children.length
 
             resolve({
                 object: object,
