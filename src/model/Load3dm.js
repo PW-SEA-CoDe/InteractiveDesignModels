@@ -6,10 +6,13 @@
 import * as THREE from 'three';         //Used for text complete, replace this with unpkg module on build
 //import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
 import { Rhino3dmLoader } from 'https://unpkg.com/three@0.164.1/examples/jsm/loaders/3DMLoader.js';
+import { UIElements } from '../../main';
 
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/')
 
+const testUI = UIElements().fb
+console.log(testUI)
 // 3DM Loader functions
 
 /**
@@ -31,6 +34,9 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         }
 
         loader.load( url, function(object) {
+            let meshs = []
+            let lines = []
+            let geometry = []
             let avgCenter
             avgCenter = {
                 x: 0,
@@ -39,13 +45,59 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             }
             object.up = new THREE.Vector3(0,0,1)
 
+            function LayerSort() {
+                const modelLayers = object.userData.layers
+                const LayerSort = []
+                modelLayers.forEach((layer, i) => {
+                    const layerChildren = []
+                    object.children.forEach(child => {
+                        if (child.userData.attributes.layerIndex === i) {
+                            layerChildren.push(child)
+                        }
+                    })
+                    LayerSort.push(layerChildren)
+                })
+
+                return (LayerSort)
+            }
+            const layerSort = LayerSort()
+            console.log(layerSort)
+
+            function GroupSort() {
+                const modelGroups = object.userData.groups
+                const GroupSort = []
+                modelGroups.forEach((group, i) => {
+                    const groupChildren = []
+                    object.children.forEach(child => {
+                        if (child.userData.attributes.groupIds !== undefined) {
+                            child.userData.attributes.groupIds.forEach(id => {
+                                if (id === i) {
+                                    groupChildren.push(child)
+                                }
+                            })
+                        }
+                    })
+                    GroupSort.push(groupChildren)
+                })
+
+                return(GroupSort)
+            }
+            const groupSort = GroupSort()
+            console.log(groupSort)
+
             object.children.forEach(child => {
-                child.castShadow = castShadow
-                child.receiveShadow = receiveShadow
-                child.geometry.computeBoundingSphere()
-                avgCenter.x += child.geometry.boundingSphere.center.x
-                avgCenter.y += child.geometry.boundingSphere.center.y
-                avgCenter.z += child.geometry.boundingSphere.center.z
+                geometry.push(child)
+                if (child.type === 'Mesh') {
+                    child.castShadow = castShadow
+                    child.receiveShadow = receiveShadow
+                    child.geometry.computeBoundingSphere()
+                    avgCenter.x += child.geometry.boundingSphere.center.x
+                    avgCenter.y += child.geometry.boundingSphere.center.y
+                    avgCenter.z += child.geometry.boundingSphere.center.z
+                    meshs.push(child)
+                } else if (child.type === 'Line') {
+                    lines.push(child)
+                }
             })
 
             avgCenter.x = avgCenter.x / object.children.length
@@ -53,7 +105,11 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             avgCenter.z = avgCenter.z / object.children.length
 
             resolve({
-                object: object,
+                meshs: meshs,
+                lines: lines,
+                object: geometry,
+                layers: layerSort,
+                groups: groupSort,
                 averageCenter: avgCenter,
             })
         })

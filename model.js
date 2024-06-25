@@ -3,6 +3,7 @@ import Fetch3DM from "./src/model/Load3dm";
 import { AmbientLight, DirectionalLight, FourPointUniformLight, PointLight, ThreePointLight } from "./src/scene/Lighting";
 import { handleWindowResize } from "./src/utils/CanvasUtils";
 
+
 //Scene
 const {scene, sceneContainer, renderer, camera, controls} = SceneInit()
 camera.position.set(-600,750,800) 
@@ -25,7 +26,18 @@ scene.add(
 let model
 model = await Fetch3DM('assets/models/MixedUse-Tower-Massing-Model.3dm', false, true)
 
-scene.add(model.object)
+model.layers.forEach((item, i) => {
+    item.forEach(child => {
+        if (child.type === 'Mesh') {
+            scene.add(child)
+        }
+    })
+})
+/*
+model.lines.forEach(item => {
+    scene.add(item)
+})
+*/
 
 //Utils
 handleWindowResize(camera, renderer,sceneContainer)
