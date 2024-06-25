@@ -39,21 +39,21 @@ The root object in Three is the 'Scene' which contains all other components. The
 _**At a minimum, the Scene, a Camera and a Renderer must be defined to create a Scene.**_  
 
 ```
-scene ↴                                 //Root Element
-        renderer                        //Renders Scene
-        camera                          //Visual access point to scene
-        lights ↴                        //Lighting - Multiple possible types
+scene ↴                                 // Root Element
+        renderer                        // Renders Scene
+        camera                          // Visual access point to scene
+        lights ↴                        // Lighting - Multiple possible types
                     Spotlight                   
                     Domelight
                     ...
-        geometry ↴                       //Geometry - Multiple native and loadable types
+        geometry ↴                      // Geometry - Multiple native and loadable types
                     Mesh
                     Polysurface
                     Line
                     .3dm
                     .gltf
                     ... 
-        controls                        //Control of camera in scene space
+        controls                        // Control of camera in scene space
 ```
 #### Camera
 Each scene needs to initialize a camera in order to view the scene. Three provides a series of pre-built camera options that need some additional attributes in order to work properly.
@@ -65,11 +65,29 @@ Lastly, the user can populate the scene with any amount of meshes, or 3D geometr
 ### iii. Loading a .3dm Model
 ### iv. UI & Site Structure
 The template file developed for this project breaks down the site structure into two ‘layers’; the ‘Model’ layer contains the Three scene, while the ‘UI’ layer contains any UI elements that the user needs to implement to interact with their models or data. 
+
 ## 3. Project Structure & Deployment
+### Vanilla Javascript
+```
+index.html              // Entry point, contains core elements
+style.css               // Styling for html,body all other styles handled in JS
+main.js                 // Call functions to create UI elements 
+model.js                // Call functions related to Scene and Model 
+src/↴
+        data/↴          // Data formatting/importing
+        model/↴         // Model interaction
+        scene/↴         // Scene (initialization, post-processing, lighting)
+        ui/↴            // UI elements (containers, graphics, styling)
+        utils/↴         // Site Utilities (window resize, helper functions, etc.) 
+assets/↴
+        data/↴
+        models/↴
+```
+### React
+
 ## 4. Model Setup
 ## 5. UI Elements
 ## 6. Interactivity
 ## 7. Accessibility & Scalability
 ## 8. Summary & Next Steps
 ## Appendix
-
