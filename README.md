@@ -2,13 +2,18 @@
 
 > 💡 This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant and is intended for public use.
 
-The goal of this project is to research and develop a series of templates for creating minimal web apps that allows designers to load, render and interact with Rhino .3dm models. 
+The goal of this project is to research and develop a series of templated code bases for creating minimal standalone web applications that allows designers to load, render and interact with Rhino .3dm models using Three.js. The repository contains a starting template as well as some completed example projects with the aim of providing users with an entry point to build upon for their specific design needs.
 
 ### Contributors:
 
 [William Franklin](https://github.com/wmfranklin20)
 
 [Preston Pape](https://github.com/prxsto)
+
+### Tech Stack:
+- Plain Javascript / React
+- [Three.js](https://threejs.org/)
+- [Vite](https://vitejs.dev/)
 
 ## 1. Opportunities & Purpose
 
