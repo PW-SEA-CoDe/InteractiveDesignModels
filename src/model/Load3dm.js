@@ -3,7 +3,8 @@
  */
 
 // Modules Imports
-import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
+import * as THREE from 'three';         //Used for text complete, replace this with unpkg module on build
+//import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
 import { Rhino3dmLoader } from 'https://unpkg.com/three@0.164.1/examples/jsm/loaders/3DMLoader.js';
 
 const loader = new Rhino3dmLoader()

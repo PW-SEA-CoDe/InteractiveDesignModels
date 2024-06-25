@@ -5,7 +5,8 @@
  */
 
 // Modules Imports
-import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
+import * as THREE from 'three';         //Used for text complete, replace this with unpkg module on build
+//import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
 
 
 //Generic Light Types
@@ -159,5 +160,45 @@ export function ThreePointLight(color, intensity, pos, shadow) {
         lightA: kLight,
         lightB: fLight,
         lightC: rLight
+    })
+}
+/**
+ * Four point uniform lighting. Equally lights all sides of model
+ * 
+ * @param {string} color string: rgb or hex value. Defines light color
+ * @param {float} intensity float: Defines light intensity
+ * @param {dict} pos dict(ints): Defines light position
+ * @param {bool} shadow bool: Toggle whether light casts shadow
+ * @returns dict: lightA(obj), lightB(obj), lightC(obj)
+ */
+export function FourPointUniformLight(color, intensity, pos, shadow) {
+    let aColor, bColor, cColor, dColor
+    let aLight, bLight, cLight, dLight
+
+    aColor = new THREE.Color( color )
+    aLight = new THREE.DirectionalLight(aColor, intensity)
+    aLight.position.set( pos.x, pos.y, pos.z )
+    aLight.castShadow = shadow
+
+    bColor = new THREE.Color( color )
+    bLight = new THREE.DirectionalLight(bColor, intensity)
+    bLight.position.set( -pos.x, pos.y, pos.z )
+    bLight.castShadow = shadow
+
+    cColor = new THREE.Color( color )
+    cLight = new THREE.DirectionalLight(cColor, intensity)
+    cLight.position.set( pos.x, -pos.y, pos.z )
+    cLight.castShadow = shadow
+
+    dColor = new THREE.Color( color )
+    dLight = new THREE.DirectionalLight(dColor, intensity)
+    dLight.position.set( -pos.x, -pos.y, pos.z )
+    dLight.castShadow = shadow
+
+    return ({
+        lightA: aLight,
+        lightB: bLight,
+        lightC: cLight,
+        lightD: dLight,
     })
 }
