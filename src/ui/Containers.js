@@ -23,16 +23,21 @@ export function FloatingBar() {
         right: '1%',
 
         //Size
-        minWidth: '100px',
+        minWidth: '300px',
         width: '20%',
         maxWidth: '100%',
 
         minHeight: '100px',
-        height: '50%',
+        height: '40%',
         maxHeight: '100%',
 
+        //Framing
+        padding: '10px',
+        margin: '10px',
+
         //Style
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(55,55,55,0.5)',
+        backdropFilter: 'blur(5px)',
         borderRadius: '20px'
     }
     wrapper = CreateDiv('fb-wrapper', wrapperStyle)

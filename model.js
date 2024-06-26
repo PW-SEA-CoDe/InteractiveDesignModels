@@ -15,6 +15,7 @@ dLight = DirectionalLight('rgb(255,255,255)', 5.0, {x:500,y:500,z:200}, true)
 tpLight = ThreePointLight('rgb(255,255,255)', 5.0, {x:500,y:500,z:200}, true)
 fourLight = FourPointUniformLight('rgb(255,255,255)', 2.0, {x:500, y:500, z:500}, true)
 
+
 scene.add(
     fourLight.lightA,
     fourLight.lightB,

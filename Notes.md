@@ -41,3 +41,9 @@
 3. Load Model
 4. Load Data
 5. Load UI Graphics
+
+## Model Outputs
+- Meshes
+- Lines
+- Grouped Objects
+- Layer Objects (dict with layername and objects?)
