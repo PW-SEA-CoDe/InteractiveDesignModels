@@ -44,15 +44,22 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
                 z: 0
             }
             object.up = new THREE.Vector3(0,0,1)
+
             function ConstructLayerTable() {
                 const layers = (object.userData.layers)
                 const mainLayers = []
+                const layerDict = {
+                    parent: '',
+                    subLayers: [],
+                }
 
-                layers.forEach(layer => {
+                layers.forEach((layer, i) => {
                     console.log(layer)
+                    console.log(i)
                     if (!layer.fullPath.includes('::')) {
                         mainLayers.push(layer.name)
                     }
+
                 })
                 mainLayers.forEach(layer => {
                     layers.forEach(item => {
