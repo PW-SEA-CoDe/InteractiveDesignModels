@@ -46,19 +46,12 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         };
         object.up = new THREE.Vector3(0, 0, 1);
 
-        console.log(object);
-
         function ConstructLayerTable() {
           const layers = object.userData.layers;
           const mainLayers = [];
-          const layerDict = {
-            parent: "",
-            subLayers: [],
-          };
 
-          layers.forEach((layer, i) => {
+          layers.forEach((layer) => {
             console.log(layer);
-            console.log(i);
             if (!layer.fullPath.includes("::")) {
               mainLayers.push(layer.name);
             }
@@ -108,9 +101,10 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             });
             GroupSort.push(groupChildren);
           });
+          
+        const layerSort = LayerSort();
+        console.log(layerSort);
 
-          return GroupSort;
-        }
         const groupSort = GroupSort();
         console.log(groupSort);
 

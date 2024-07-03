@@ -1,10 +1,10 @@
 import { FloatingBar } from "./src/ui/Containers";
 
-const fb = FloatingBar()
+const fb = FloatingBar();
 
 export function UIElements() {
-    let elements = {}
-    elements.fb = fb
+  let elements = {};
+  elements.fb = fb;
 
-    return (elements)
+  return elements;
 }
