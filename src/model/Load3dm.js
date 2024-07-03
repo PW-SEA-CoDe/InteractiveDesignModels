@@ -45,6 +45,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           z: 0,
         };
         object.up = new THREE.Vector3(0, 0, 1);
+
         function ConstructLayerTable() {
           const layers = object.userData.layers;
           const mainLayers = [];
@@ -100,9 +101,10 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             });
             GroupSort.push(groupChildren);
           });
+          
+        const layerSort = LayerSort();
+        console.log(layerSort);
 
-          return GroupSort;
-        }
         const groupSort = GroupSort();
         console.log(groupSort);
 

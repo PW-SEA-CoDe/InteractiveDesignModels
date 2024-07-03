@@ -51,6 +51,7 @@ model = await Fetch3DM(
 );
 
 model.layers.forEach((item, i) => {
+  console.log("This is index: " + i);
   item.forEach((child) => {
     if (child.type === "Mesh") {
       scene.add(child);
