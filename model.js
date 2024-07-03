@@ -4,10 +4,10 @@ import {
   AmbientLight,
   DirectionalLight,
   FourPointUniformLight,
-  PointLight,
   ThreePointLight,
 } from "./src/scene/Lighting";
 import { handleWindowResize } from "./src/utils/CanvasUtils";
+import { PointerHover } from "./src/model/Interaction";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
@@ -62,6 +62,13 @@ model.lines.forEach(item => {
     scene.add(item)
 })
 */
+console.log(model);
+
+//Interaction
+window.addEventListener("mousemove", function (event) {
+  let intersected = PointerHover(event, model.meshs, camera).object;
+  console.log(intersected);
+});
 
 //Utils
 handleWindowResize(camera, renderer, sceneContainer);
