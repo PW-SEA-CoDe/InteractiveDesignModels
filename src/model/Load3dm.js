@@ -33,6 +33,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
       url,
       function (object) {
         object = object;
+        console.log(object);
 
         let geometry = [];
         let meshs = [];
@@ -67,35 +68,43 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         function ConstructLayerTable() {
           const layers = object.userData.layers;
           const mainLayers = [];
+          class Layer {
+            constructor() {}
+            name = null;
+            index = null;
+            sublayers = [];
+            objects = [];
+          }
 
-          layers.forEach((layer) => {
-            class Layer {
-              constructor() {}
-              name = null;
-              sublayers = [];
-            }
+          layers.forEach((layer, i) => {
             if (!layer.fullPath.includes("::")) {
               let mLayer = new Layer();
               mLayer.name = layer.name;
+              mLayer.index = i;
               mainLayers.push(mLayer);
             }
           });
 
           mainLayers.forEach((layer) => {
             console.log(layer.name);
-            layers.forEach((item) => {
+            layers.forEach((item, i) => {
               if (
                 item.fullPath.includes(layer.name) &&
                 item.fullPath.split("::").length <= 2 &&
                 item.fullPath.split("::").length > 1
               ) {
-                layer.sublayers.push(item);
+                let sLayer = new Layer();
+                sLayer.name = item.name;
+                sLayer.index = i;
+                layer.sublayers.push(sLayer);
                 console.log(item.name);
               }
             });
             console.log(" ");
           });
           console.log(mainLayers);
+
+          const groups = object.userData.groups;
 
           return mainLayers;
         }

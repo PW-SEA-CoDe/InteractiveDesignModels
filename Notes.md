@@ -52,4 +52,5 @@ Geometry:
 
 Information:
 - layerTable: Dictionary of layer table (main layers, sublayers, sub-sublayers, etc.)
+    - using split to find "::" and test length to then relate to sublayer
 - groupTable: Dictionary of groups in model
