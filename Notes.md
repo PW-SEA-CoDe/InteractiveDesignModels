@@ -42,8 +42,15 @@
 4. Load Data
 5. Load UI Graphics
 
-## Model Outputs
-- Meshes
-- Lines
-- Grouped Objects
-- Layer Objects (dict with layername and objects?)
+## Load3DM Return Variables
+Geometry:
+- ✅ object: Entire loaded model (contains children, layerIndex, etc.)
+- ✅ geometry: All children of loaded object (meshs, lines, etc.)
+- ✅ meshes: All Mesh type children
+- ✅ lines: All line type children
+- ✅ averageCenter: Average center of all mesh objects (cant do lines?)
+
+Information:
+- layerTable: Dictionary of layer table (main layers, sublayers, sub-sublayers, etc.)
+    - using split to find "::" and test length to then relate to sublayer
+- groupTable: Dictionary of groups in model
