@@ -7,6 +7,7 @@ import * as THREE from "three"; //Used for text complete, replace this with unpk
 //import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
 import { Rhino3dmLoader } from "https://unpkg.com/three@0.164.1/examples/jsm/loaders/3DMLoader.js";
 import { UIElements } from "../../main";
+import { load } from "three/examples/jsm/libs/opentype.module.js";
 
 const loader = new Rhino3dmLoader();
 loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/");
@@ -24,20 +25,18 @@ console.log(testUI);
  * @returns dict: object(obj), averageCenter(Vector3)
  */
 export default async function Fetch3DM(url, castShadow, receiveShadow) {
-  return new Promise(
-    (resolve, reject) => {
-      let objects, object;
-      objects = [];
-      object = {
-        object: null, // Object
-        children: null, // Array
-        material: null, // Array
-      };
+  return new Promise((resolve, reject) => {
+    let object;
+    object = null;
 
-      loader.load(url, function (object) {
+    loader.load(
+      url,
+      function (object) {
+        object = object;
+
+        let geometry = [];
         let meshs = [];
         let lines = [];
-        let geometry = [];
         let avgCenter;
         avgCenter = {
           x: 0,
@@ -46,24 +45,59 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         };
         object.up = new THREE.Vector3(0, 0, 1);
 
+        object.children.forEach((child) => {
+          geometry.push(child);
+          child.geometry.computeBoundingSphere();
+          avgCenter.x += child.geometry.boundingSphere.center.x;
+          avgCenter.y += child.geometry.boundingSphere.center.y;
+          avgCenter.z += child.geometry.boundingSphere.center.z;
+          if (child.type === "Mesh") {
+            meshs.push(child);
+            child.castShadow = castShadow;
+            child.receiveShadow = receiveShadow;
+          } else if (child.type === "Line") {
+            lines.push(child);
+          }
+        });
+
+        avgCenter.x = avgCenter.x / object.children.length;
+        avgCenter.y = avgCenter.y / object.children.length;
+        avgCenter.z = avgCenter.z / object.children.length;
+
         function ConstructLayerTable() {
           const layers = object.userData.layers;
           const mainLayers = [];
 
           layers.forEach((layer) => {
-            console.log(layer);
+            class Layer {
+              constructor() {}
+              name = null;
+              sublayers = [];
+            }
             if (!layer.fullPath.includes("::")) {
-              mainLayers.push(layer.name);
+              let mLayer = new Layer();
+              mLayer.name = layer.name;
+              mainLayers.push(mLayer);
             }
           });
+
           mainLayers.forEach((layer) => {
+            console.log(layer.name);
             layers.forEach((item) => {
-              if (item.fullPath.includes(layer)) {
+              if (
+                item.fullPath.includes(layer.name) &&
+                item.fullPath.split("::").length <= 2 &&
+                item.fullPath.split("::").length > 1
+              ) {
+                layer.sublayers.push(item);
                 console.log(item.name);
               }
             });
             console.log(" ");
           });
+          console.log(mainLayers);
+
+          return mainLayers;
         }
         ConstructLayerTable();
 
@@ -83,7 +117,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           return LayerSort;
         }
         const layerSort = LayerSort();
-        console.log(layerSort);
+        //console.log(layerSort);
 
         function GroupSort() {
           const modelGroups = object.userData.groups;
@@ -101,45 +135,26 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             });
             GroupSort.push(groupChildren);
           });
-          
-        const layerSort = LayerSort();
-        console.log(layerSort);
+        }
 
         const groupSort = GroupSort();
-        console.log(groupSort);
-
-        object.children.forEach((child) => {
-          geometry.push(child);
-          if (child.type === "Mesh") {
-            child.castShadow = castShadow;
-            child.receiveShadow = receiveShadow;
-            child.geometry.computeBoundingSphere();
-            avgCenter.x += child.geometry.boundingSphere.center.x;
-            avgCenter.y += child.geometry.boundingSphere.center.y;
-            avgCenter.z += child.geometry.boundingSphere.center.z;
-            meshs.push(child);
-          } else if (child.type === "Line") {
-            lines.push(child);
-          }
-        });
-
-        avgCenter.x = avgCenter.x / object.children.length;
-        avgCenter.y = avgCenter.y / object.children.length;
-        avgCenter.z = avgCenter.z / object.children.length;
+        //console.log(groupSort);
 
         resolve({
-          meshs: meshs,
+          object: object,
+          meshes: meshs,
           lines: lines,
           object: geometry,
           layers: layerSort,
           groups: groupSort,
           averageCenter: avgCenter,
         });
-      });
-    },
-    function (error) {
-      reject(error);
-      console.log(error);
-    }
-  );
+      },
+      undefined,
+      function (error) {
+        reject(error);
+        console.log(error);
+      }
+    );
+  });
 }

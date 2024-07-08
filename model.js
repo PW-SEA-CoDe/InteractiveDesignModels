@@ -51,7 +51,6 @@ model = await Fetch3DM(
 );
 
 model.layers.forEach((item, i) => {
-  console.log("This is index: " + i);
   item.forEach((child) => {
     if (child.type === "Mesh") {
       scene.add(child);
@@ -67,7 +66,7 @@ console.log(model);
 
 //Interaction
 window.addEventListener("mousemove", function (event) {
-  let intersected = PointerHover(event, model.meshs, camera).object;
+  let intersected = PointerHover(event, model.meshes, camera).object;
   console.log(intersected);
 });
 
