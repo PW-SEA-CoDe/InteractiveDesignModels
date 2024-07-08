@@ -76,7 +76,27 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
             objects = [];
           }
 
+          let maxLayerDepth = 0;
           layers.forEach((layer, i) => {
+            let layerDepth = layer.fullPath.split("::").length;
+            if (layerDepth > maxLayerDepth) {
+              maxLayerDepth = layerDepth;
+            }
+          });
+          for (let i = 0; i < maxLayerDepth; i++) {
+            let layerList = [];
+            layers.forEach((layer, n) => {
+              if (layer.fullPath.split("::").length === i + 1) {
+                layerList.push(layer);
+                console.log(n);
+              }
+            });
+            console.log(layerList);
+            console.log(" ");
+          }
+
+          layers.forEach((layer, i) => {
+            console.log(layer.fullPath.split("::").length);
             if (!layer.fullPath.includes("::")) {
               let mLayer = new Layer();
               mLayer.name = layer.name;
@@ -132,31 +152,40 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           const modelGroups = object.userData.groups;
           const GroupSort = [];
           modelGroups.forEach((group, i) => {
-            const groupChildren = [];
+            class Group {
+              constructor() {}
+              name = null;
+              index = null;
+              geometry = [];
+            }
+            let g = new Group();
+            g.name = group.name;
+            g.index = group.index;
             object.children.forEach((child) => {
               if (child.userData.attributes.groupIds !== undefined) {
                 child.userData.attributes.groupIds.forEach((id) => {
                   if (id === i) {
-                    groupChildren.push(child);
+                    g.geometry.push(child);
                   }
                 });
               }
             });
-            GroupSort.push(groupChildren);
+            GroupSort.push(g);
           });
+          return GroupSort;
         }
 
         const groupSort = GroupSort();
         //console.log(groupSort);
 
         resolve({
-          object: object,
-          meshes: meshs,
-          lines: lines,
-          object: geometry,
-          layers: layerSort,
-          groups: groupSort,
           averageCenter: avgCenter,
+          geometry: geometry,
+          groups: groupSort,
+          layers: layerSort,
+          lines: lines,
+          meshes: meshs,
+          object: object,
         });
       },
       undefined,
