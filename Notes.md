@@ -54,3 +54,8 @@ Information:
 - layerTable: Dictionary of layer table (main layers, sublayers, sub-sublayers, etc.)
     - using split to find "::" and test length to then relate to sublayer
 - groupTable: Dictionary of groups in model
+
+## Working Ideas
+- Set camera and controls focus to average center
+- Slow orbit on model load
+- Define unique material per object for hovering

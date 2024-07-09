@@ -14,7 +14,7 @@ import { CreateDiv } from "../utils/ScriptUtils";
 const ui = document.getElementById("ui");
 console.log("Imported " + ui.id + " correctly!");
 
-export function FloatingBar() {
+export function FloatingTab() {
   let wrapper, wrapperStyle;
   wrapperStyle = {
     //Location

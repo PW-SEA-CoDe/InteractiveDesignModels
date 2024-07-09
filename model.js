@@ -44,11 +44,7 @@ scene.add(
 
 //Models
 let model;
-model = await Fetch3DM(
-  "assets/models/MixedUse-Tower-Massing-Model.3dm",
-  false,
-  true
-);
+model = await Fetch3DM("assets/models/Massing-Options.3dm", false, true);
 
 model.layers.forEach((item, i) => {
   item.forEach((child) => {
@@ -67,7 +63,7 @@ console.log(model);
 //Interaction
 window.addEventListener("mousemove", function (event) {
   let intersected = PointerHover(event, model.meshes, camera).object;
-  console.log(intersected);
+  //console.log(intersected);
 });
 
 //Utils

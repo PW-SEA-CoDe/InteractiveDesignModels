@@ -7,7 +7,6 @@ import * as THREE from "three"; //Used for text complete, replace this with unpk
 //import * as THREE from 'https://unpkg.com/three@0.164.1/build/three.module.js';
 import { Rhino3dmLoader } from "https://unpkg.com/three@0.164.1/examples/jsm/loaders/3DMLoader.js";
 import { UIElements } from "../../main";
-import { load } from "three/examples/jsm/libs/opentype.module.js";
 
 const loader = new Rhino3dmLoader();
 loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/");
@@ -48,10 +47,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
 
         object.children.forEach((child) => {
           geometry.push(child);
-          child.geometry.computeBoundingSphere();
-          avgCenter.x += child.geometry.boundingSphere.center.x;
-          avgCenter.y += child.geometry.boundingSphere.center.y;
-          avgCenter.z += child.geometry.boundingSphere.center.z;
+
           if (child.type === "Mesh") {
             meshs.push(child);
             child.castShadow = castShadow;
@@ -61,17 +57,58 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           }
         });
 
-        avgCenter.x = avgCenter.x / object.children.length;
-        avgCenter.y = avgCenter.y / object.children.length;
-        avgCenter.z = avgCenter.z / object.children.length;
+        function GetAverageCenter() {
+          object.children.forEach((child) => {
+            child.geometry.computeBoundingSphere();
+            avgCenter.x += child.geometry.boundingSphere.center.x;
+            avgCenter.y += child.geometry.boundingSphere.center.y;
+            avgCenter.z += child.geometry.boundingSphere.center.z;
+          });
+          avgCenter.x = avgCenter.x / object.children.length;
+          avgCenter.y = avgCenter.y / object.children.length;
+          avgCenter.z = avgCenter.z / object.children.length;
+        }
+        GetAverageCenter();
 
-        function ConstructLayerTable() {
+        function REVGetLayerTable() {
+          let layerObjects, layerObjs, maxLayerDepth, layerTree, layerPaths;
+
+          layerObjects = object.userData.layers;
+          layerObjs = [];
+          maxLayerDepth = 0;
+          layerTree = [];
+          layerPaths = [];
+
+          class Layer {
+            constructor(name, fullPath, index, object) {
+              this.name = name;
+              this.fullPath = fullPath;
+              this.index = index;
+              this.object = object;
+            }
+            sublayers = [];
+            geometry = [];
+          }
+
+          layerObjects.forEach((layer, i) => {
+            let l = new Layer(layer.name, layer.fullPath, i, layer);
+            let layerDepth = layer.fullPath.split("::").length;
+            if (layerDepth > maxLayerDepth) {
+              maxLayerDepth = layerDepth;
+            }
+            layerObjs.push(l);
+          });
+        }
+        REVGetLayerTable();
+
+        function GetLayerTable() {
           const layers = object.userData.layers;
           const mainLayers = [];
           class Layer {
             constructor() {}
             name = null;
             index = null;
+            object = null;
             sublayers = [];
             objects = [];
           }
@@ -83,17 +120,26 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
               maxLayerDepth = layerDepth;
             }
           });
+          let layerTree = [];
           for (let i = 0; i < maxLayerDepth; i++) {
             let layerList = [];
             layers.forEach((layer, n) => {
               if (layer.fullPath.split("::").length === i + 1) {
-                layerList.push(layer);
+                let l = new Layer();
+                l.name = layer.name;
+                l.index = n;
+                l.object = layer;
+                layerList.push(l);
                 console.log(n);
               }
             });
-            console.log(layerList);
-            console.log(" ");
+            layerTree.push(layerList);
           }
+          console.log(layerTree);
+          let layerTable = [];
+          layerTree.forEach((level) => {
+            level.forEach((layer) => {});
+          });
 
           layers.forEach((layer, i) => {
             console.log(layer.fullPath.split("::").length);
@@ -128,7 +174,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
 
           return mainLayers;
         }
-        ConstructLayerTable();
+        //GetLayerTable();
 
         function LayerSort() {
           const modelLayers = object.userData.layers;
@@ -174,7 +220,6 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           });
           return GroupSort;
         }
-
         const groupSort = GroupSort();
         //console.log(groupSort);
 
