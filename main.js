@@ -11,5 +11,6 @@ export function UIElements() {
   let elements = {};
   elements.fb = fb;
 
+  console.log(elements);
   return elements;
 }

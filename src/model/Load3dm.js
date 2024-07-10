@@ -70,7 +70,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         }
         GetAverageCenter();
 
-        function REVGetLayerTable() {
+        function GetLayerTable() {
           let layerObjects, layerObjs, maxLayerDepth, layerTree, layerPaths;
 
           layerObjects = object.userData.layers;
@@ -92,108 +92,48 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
 
           layerObjects.forEach((layer, i) => {
             let l = new Layer(layer.name, layer.fullPath, i, layer);
+            object.children.forEach((child) => {
+              if (child.userData.attributes.layerIndex === l.index) {
+                l.geometry.push(child);
+              }
+            });
             let layerDepth = layer.fullPath.split("::").length;
             if (layerDepth > maxLayerDepth) {
               maxLayerDepth = layerDepth;
             }
             layerObjs.push(l);
           });
-        }
-        REVGetLayerTable();
 
-        function GetLayerTable() {
-          const layers = object.userData.layers;
-          const mainLayers = [];
-          class Layer {
-            constructor() {}
-            name = null;
-            index = null;
-            object = null;
-            sublayers = [];
-            objects = [];
-          }
-
-          let maxLayerDepth = 0;
-          layers.forEach((layer, i) => {
-            let layerDepth = layer.fullPath.split("::").length;
-            if (layerDepth > maxLayerDepth) {
-              maxLayerDepth = layerDepth;
-            }
-          });
-          let layerTree = [];
           for (let i = 0; i < maxLayerDepth; i++) {
-            let layerList = [];
-            layers.forEach((layer, n) => {
-              if (layer.fullPath.split("::").length === i + 1) {
-                let l = new Layer();
-                l.name = layer.name;
-                l.index = n;
-                l.object = layer;
-                layerList.push(l);
-                console.log(n);
+            const previousLayers = [];
+            const currentLayers = [];
+            layerObjs.forEach((item) => {
+              if (i === 0) {
+                if (item.fullPath.split("::").length === i + 1) {
+                  layerTree.push(item);
+                }
+              } else {
+                if (item.fullPath.split("::").length === i) {
+                  previousLayers.push(item);
+                } else if (item.fullPath.split("::").length == i + 1) {
+                  currentLayers.push(item);
+                }
               }
             });
-            layerTree.push(layerList);
-          }
-          console.log(layerTree);
-          let layerTable = [];
-          layerTree.forEach((level) => {
-            level.forEach((layer) => {});
-          });
-
-          layers.forEach((layer, i) => {
-            console.log(layer.fullPath.split("::").length);
-            if (!layer.fullPath.includes("::")) {
-              let mLayer = new Layer();
-              mLayer.name = layer.name;
-              mLayer.index = i;
-              mainLayers.push(mLayer);
+            if (currentLayers) {
+              previousLayers.forEach((i) => {
+                currentLayers.forEach((n) => {
+                  if (n.fullPath.includes(i.fullPath)) {
+                    i.sublayers.push(n);
+                  }
+                });
+              });
             }
-          });
-
-          mainLayers.forEach((layer) => {
-            console.log(layer.name);
-            layers.forEach((item, i) => {
-              if (
-                item.fullPath.includes(layer.name) &&
-                item.fullPath.split("::").length <= 2 &&
-                item.fullPath.split("::").length > 1
-              ) {
-                let sLayer = new Layer();
-                sLayer.name = item.name;
-                sLayer.index = i;
-                layer.sublayers.push(sLayer);
-                console.log(item.name);
-              }
-            });
-            console.log(" ");
-          });
-          console.log(mainLayers);
-
-          const groups = object.userData.groups;
-
-          return mainLayers;
+          }
+          return layerTree;
         }
-        //GetLayerTable();
-
-        function LayerSort() {
-          const modelLayers = object.userData.layers;
-          const LayerSort = [];
-          modelLayers.forEach((layer, i) => {
-            const layerChildren = [];
-            object.children.forEach((child) => {
-              if (child.userData.attributes.layerIndex === i) {
-                layerChildren.push(child);
-              }
-            });
-            LayerSort.push(layerChildren);
-          });
-
-          return LayerSort;
-        }
-        const layerSort = LayerSort();
-        //console.log(layerSort);
-
+        const layerTree = GetLayerTable();
+        console.log(layerTree);
         function GroupSort() {
           const modelGroups = object.userData.groups;
           const GroupSort = [];
@@ -227,7 +167,7 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           averageCenter: avgCenter,
           geometry: geometry,
           groups: groupSort,
-          layers: layerSort,
+          layers: layerTree,
           lines: lines,
           meshes: meshs,
           object: object,
