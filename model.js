@@ -11,6 +11,7 @@ import { PointerHover } from "./src/model/Interaction";
 import { UIElements } from "./main";
 import { CreateDiv, UpdateStyle } from "./src/utils/ScriptUtils";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
+import { LayerTable } from "./src/ui/Containers";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
@@ -53,42 +54,8 @@ model.geometry.forEach((item) => {
   scene.add(item);
 });
 
-function UILayerTable() {
-  const uiCont = UIElements().fb;
-  const layerList = document.createElement("ul");
-  const ulStyle = {
-    listStyleType: "none",
-  };
-  UpdateStyle(layerList, ulStyle);
-  model.layers.forEach((layer, i) => {
-    const liStyle = {
-      width: "100%",
-      height: "10%",
-      fontWeight: "100",
-      fontSize: "14px",
-      color: "white",
-    };
-    const item = document.createElement("li");
-    item.innerText = layer.name;
-    UpdateStyle(item, liStyle);
-    layerList.append(item);
-    console.log(layer.name);
-    if (layer.sublayers.length !== 0) {
-      const subList = document.createElement("ul");
-      UpdateStyle(subList, ulStyle);
-      layer.sublayers.forEach((sublayer) => {
-        const item = document.createElement("li");
-        item.innerText = sublayer.name;
-        UpdateStyle(item, liStyle);
-        subList.append(item);
-        console.log(sublayer.name);
-      });
-      item.append(subList);
-    }
-  });
-  uiCont.append(layerList);
-}
-UILayerTable();
+const fb = UIElements().fb;
+LayerTable(model.layers, fb);
 console.log(model);
 
 //Interaction
