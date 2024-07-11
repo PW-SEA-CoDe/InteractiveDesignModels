@@ -50,7 +50,7 @@ scene.add(
 let model;
 model = await Fetch3DM("assets/models/Massing-Options.3dm", false, true);
 
-model.geometry.forEach((item) => {
+model.meshes.forEach((item) => {
   scene.add(item);
 });
 

@@ -31,8 +31,8 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
     loader.load(
       url,
       function (object) {
-        object = object;
         console.log(object);
+        object = object;
 
         let geometry = [];
         let meshs = [];

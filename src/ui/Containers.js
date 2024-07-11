@@ -8,7 +8,9 @@
  * function StackingDiagram should be defined in Graphics.js
  */
 
+import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
+import { MarchingCubes } from "three/examples/jsm/Addons.js";
 
 //Global Variables
 const ui = document.getElementById("ui");
@@ -52,6 +54,12 @@ export function LayerTable(layers, cont) {
     const wrapperStyle = {
       width: "100%",
       height: "5%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "white",
+      fontSize: "14px",
+      fontWeight: "600",
     };
     const wrapper = CreateDiv("layer-title", wrapperStyle);
     wrapper.innerText = "Layer Table";
@@ -62,52 +70,52 @@ export function LayerTable(layers, cont) {
     const wrapperStyle = {
       width: "100%",
       height: "95%",
+      display: "flex",
+      flexDirection: "column",
+
+      color: "white",
+      fontSize: "12px",
+      fontWeight: "200",
     };
-    const wrapper = CreateDiv("layer-table", wrapperStyle);
-    function DefTable() {
-      const ulStyle = {
-        listStyleType: "none",
-        width: "100%",
-        height: "100%",
-        margin: "0px",
-        padding: "0px",
-      };
-      const layerList = document.createElement("ul");
-      UpdateStyle(layerList, ulStyle);
-      layerList.id = "layer-list";
+    const wrapper = CreateDiv("layer-list", wrapperStyle);
 
-      layers.forEach((layer, i) => {
-        const liStyle = {
-          width: "100%",
-          height: "10%",
+    const layerStyle = {
+      width: "50%",
+      height: "5%",
+      marginTop: "2%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
 
-          margin: "10px",
+      borderRadius: "5px",
 
-          fontWeight: "100",
-          fontSize: "14px",
-          color: "white",
+      backgroundColor: "white",
+      color: "gray",
+    };
+    layers.forEach((layer) => {
+      const div = CreateDiv(`${layer.name}`, layerStyle);
+      div.innerText = layer.name;
+      wrapper.append(div);
+      layer.sublayers.forEach((sublayer) => {
+        const subLayerStyle = {
+          marginLeft: "5%",
         };
-        const item = document.createElement("li");
-        item.innerText = layer.name;
-        UpdateStyle(item, liStyle);
-        layerList.append(item);
-        console.log(layer.name);
-        if (layer.sublayers.length !== 0) {
-          const subList = document.createElement("ul");
-          UpdateStyle(subList, ulStyle);
-          layer.sublayers.forEach((sublayer) => {
-            const item = document.createElement("li");
-            item.innerText = sublayer.name;
-            UpdateStyle(item, liStyle);
-            subList.append(item);
-            console.log(sublayer.name);
-          });
-          item.append(subList);
-        }
+        const div = CreateDiv(`${sublayer.name}`, layerStyle);
+        UpdateStyle(div, subLayerStyle);
+        div.innerText = sublayer.name;
+        wrapper.append(div);
+        sublayer.sublayers.forEach((tertlayer) => {
+          const tertLayerStyle = {
+            marginLeft: "10%",
+          };
+          const div = CreateDiv(`${sublayer.name}`, layerStyle);
+          UpdateStyle(div, tertLayerStyle);
+          div.innerText = tertlayer.name;
+          wrapper.append(div);
+        });
       });
-      wrapper.append(layerList);
-    }
-    DefTable();
+    });
+
     container.append(wrapper);
   }
   Title();
