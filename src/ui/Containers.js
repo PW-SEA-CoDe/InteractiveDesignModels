@@ -8,9 +8,8 @@
  * function StackingDiagram should be defined in Graphics.js
  */
 
-import { color } from "three/examples/jsm/nodes/Nodes.js";
+import { update } from "three/examples/jsm/libs/tween.module.js";
 import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
-import { MarchingCubes } from "three/examples/jsm/Addons.js";
 
 //Global Variables
 const ui = document.getElementById("ui");
@@ -86,6 +85,7 @@ export function LayerTable(layers, cont) {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      pointerEvents: "all",
 
       borderRadius: "5px",
 
@@ -93,24 +93,54 @@ export function LayerTable(layers, cont) {
       color: "gray",
     };
     layers.forEach((layer) => {
+      const activeStyle = {
+        backgroundColor: "white",
+        color: "gray",
+      };
+      const unactiveStyle = {
+        backgroundColor: "gray",
+        color: "white",
+      };
       const div = CreateDiv(`${layer.name}`, layerStyle);
       div.innerText = layer.name;
       wrapper.append(div);
+
       layer.sublayers.forEach((sublayer) => {
         const subLayerStyle = {
           marginLeft: "5%",
         };
         const div = CreateDiv(`${sublayer.name}`, layerStyle);
+        const tertLayerStyle = {
+          marginLeft: "10%",
+        };
         UpdateStyle(div, subLayerStyle);
         div.innerText = sublayer.name;
+
+        if (sublayer.object.visible === true) {
+          console.log(true);
+          UpdateStyle(div, activeStyle);
+        } else if (sublayer.object.visible === false) {
+          console.log(false);
+          UpdateStyle(div, unactiveStyle);
+        }
+
         wrapper.append(div);
+
         sublayer.sublayers.forEach((tertlayer) => {
-          const tertLayerStyle = {
-            marginLeft: "10%",
-          };
-          const div = CreateDiv(`${sublayer.name}`, layerStyle);
+          const div = CreateDiv(`${tertlayer.name}`, layerStyle);
           UpdateStyle(div, tertLayerStyle);
           div.innerText = tertlayer.name;
+          console.log(tertlayer.object);
+          /*
+
+          if (tertlayer.object.visible === true) {
+            console.log(true);
+            UpdateStyle(div, activeStyle);
+          } else if (tertlayer.object.visible === false) {
+            console.log(false);
+            UpdateStyle(div, unactiveStyle);
+          }
+            */
           wrapper.append(div);
         });
       });
@@ -120,4 +150,47 @@ export function LayerTable(layers, cont) {
   }
   Title();
   ConstructTable();
+
+  function LayerToggle(layers) {
+    const activeStyle = {
+      backgroundColor: "white",
+      color: "gray",
+    };
+    const unactiveStyle = {
+      backgroundColor: "gray",
+      color: "white",
+    };
+    const layerTable = document.getElementById("layer-list");
+    let uiLayers = layerTable.querySelectorAll("div");
+    uiLayers.forEach((child) => {
+      child.addEventListener("click", function (event) {
+        layers.forEach((layer) => {
+          Toggle(layer, child);
+          layer.sublayers.forEach((sublayer) => {
+            Toggle(sublayer, child);
+            sublayer.sublayers.forEach((tertLayer) => {
+              Toggle(tertLayer, child);
+            });
+          });
+        });
+      });
+    });
+
+    function Toggle(target, button) {
+      console.log(button.id);
+      if (target.name === button.id) {
+        console.log(target);
+        target.geometry.forEach((geometry) => {
+          geometry.visible = !geometry.visible;
+        });
+        target.object.visible = !target.object.visible;
+        if (target.object.visible === true) {
+          UpdateStyle(button, activeStyle);
+        } else if (target.object.visible === false) {
+          UpdateStyle(button, unactiveStyle);
+        }
+      }
+    }
+  }
+  LayerToggle(layers);
 }

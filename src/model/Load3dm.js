@@ -11,8 +11,6 @@ import { UIElements } from "../../main";
 const loader = new Rhino3dmLoader();
 loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@8.6.1/");
 
-const testUI = UIElements().fb;
-console.log(testUI);
 // 3DM Loader functions
 
 /**
@@ -134,7 +132,8 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
         }
         const layerTree = GetLayerTable();
         console.log(layerTree);
-        function GroupSort() {
+
+        function GetGroups() {
           const modelGroups = object.userData.groups;
           const GroupSort = [];
           modelGroups.forEach((group, i) => {
@@ -160,13 +159,13 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           });
           return GroupSort;
         }
-        const groupSort = GroupSort();
+        const groups = GetGroups();
         //console.log(groupSort);
 
         resolve({
           averageCenter: avgCenter,
           geometry: geometry,
-          groups: groupSort,
+          groups: groups,
           layers: layerTree,
           lines: lines,
           meshes: meshs,
