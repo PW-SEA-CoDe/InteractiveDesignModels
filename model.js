@@ -15,11 +15,11 @@ import { LayerTable } from "./src/ui/Containers";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
-camera.position.set(-600, 750, 800);
+camera.position.set(-500, -400, 800);
 
 //Lighting
 let aLight, dLight, tpLight, fourLight;
-aLight = AmbientLight("rgb(255,255,255)", 5.0);
+aLight = AmbientLight("rgb(255,255,255)", 10.0);
 dLight = DirectionalLight(
   "rgb(255,255,255)",
   5.0,
@@ -34,7 +34,7 @@ tpLight = ThreePointLight(
 );
 fourLight = FourPointUniformLight(
   "rgb(255,255,255)",
-  2.0,
+  2.5,
   { x: 500, y: 500, z: 500 },
   true
 );

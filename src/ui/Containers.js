@@ -24,8 +24,8 @@ export function FloatingTab() {
     right: "1%",
 
     //Size
-    minWidth: "300px",
-    width: "20%",
+    minWidth: "200px",
+    width: "10%",
     maxWidth: "100%",
 
     minHeight: "100px",
@@ -79,7 +79,7 @@ export function LayerTable(layers, cont) {
     const wrapper = CreateDiv("layer-list", wrapperStyle);
 
     const layerStyle = {
-      width: "50%",
+      width: "100%",
       height: "5%",
       marginTop: "2%",
       display: "flex",
@@ -107,11 +107,13 @@ export function LayerTable(layers, cont) {
 
       layer.sublayers.forEach((sublayer) => {
         const subLayerStyle = {
-          marginLeft: "5%",
+          marginLeft: "10%",
+          width: "90%",
         };
         const div = CreateDiv(`${sublayer.name}`, layerStyle);
         const tertLayerStyle = {
-          marginLeft: "10%",
+          marginLeft: "20%",
+          width: "80%",
         };
         UpdateStyle(div, subLayerStyle);
         div.innerText = sublayer.name;

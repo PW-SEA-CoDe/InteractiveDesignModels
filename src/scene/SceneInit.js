@@ -38,7 +38,7 @@ export default function SceneInit() {
   camera.up = new THREE.Vector3(0, 0, 1);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target = new THREE.Vector3(0, 0, 0);
+  controls.target = new THREE.Vector3(0, 0, 250);
   controls.enableDamping = true; // Damping for smooth camera movement
   controls.dampingFactor = 0.05; // Damping strength, 1 is max 0 is min
 
