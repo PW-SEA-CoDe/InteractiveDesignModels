@@ -6,6 +6,7 @@
 
 // Modules Imports
 import * as THREE from "https://unpkg.com/three@0.164.1/build/three.module.js";
+import { color } from "three/examples/jsm/nodes/Nodes.js";
 
 //Generic Light Types
 
@@ -21,6 +22,22 @@ export function AmbientLight(color, intensity) {
   lColor = new THREE.Color(color);
   light = new THREE.AmbientLight(lColor, intensity);
 
+  return {
+    light: light,
+  };
+}
+/**
+ *
+ * @param {string} sColor   string: rgb or hex value. Defines sky color
+ * @param {string} gColor   string: rgb or hex value. Defines ground color
+ * @param {float} intensity float: Defines intensity of light
+ * @returns                 dict: light(obj)
+ */
+export function HemisphereLight(sColor, gColor, intensity) {
+  let light, skyColor, groundColor;
+  skyColor = new THREE.Color(sColor);
+  groundColor = new THREE.Color(gColor);
+  light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
   return {
     light: light,
   };
@@ -123,7 +140,9 @@ export function Spotlight(color, intensity, pos, angle, shadow, showHelper) {
   };
 }
 
+///
 //Complex Lighting Paradigms
+///
 
 /**
  * Three Point Lighting. Typically used in movie sets to evenly light target.

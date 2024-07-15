@@ -88,17 +88,20 @@ export function LayerTable(layers, cont) {
 
       borderRadius: "5px",
 
-      backgroundColor: "white",
-      color: "gray",
+      backgroundColor: "rgba(254,254,249,1)",
+      color: "rgba(54,54,49,1)",
     };
     layers.forEach((layer) => {
       const activeStyle = {
-        backgroundColor: "white",
-        color: "gray",
+        backgroundColor: "rgba(254,254,249,1)",
+        color: "rgba(54,54,49,1)",
+        boxShadow: "2px 1px 0px rgba(50, 50, 50, 0.9)",
+        fontWeight: "200",
       };
       const unactiveStyle = {
-        backgroundColor: "gray",
-        color: "white",
+        backgroundColor: "rgba(104,104,99,1)",
+        color: "rgba(254,254,249,1)",
+        fontWeight: "100",
       };
       const div = CreateDiv(`${layer.name}`, layerStyle);
       div.innerText = layer.name;
@@ -154,12 +157,14 @@ export function LayerTable(layers, cont) {
 
   function LayerToggle(layers) {
     const activeStyle = {
-      backgroundColor: "white",
-      color: "gray",
+      backgroundColor: "rgba(254,254,249,1)",
+      color: "rgba(54,54,49,1)",
+      fontWeight: "200",
     };
     const unactiveStyle = {
-      backgroundColor: "gray",
-      color: "white",
+      backgroundColor: "rgba(104,104,99,1)",
+      color: "rgba(254,254,249,1)",
+      fontWeight: "100",
     };
     const layerTable = document.getElementById("layer-list");
     let uiLayers = layerTable.querySelectorAll("div");

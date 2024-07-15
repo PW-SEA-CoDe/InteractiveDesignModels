@@ -4,6 +4,7 @@ import {
   AmbientLight,
   DirectionalLight,
   FourPointUniformLight,
+  HemisphereLight,
   ThreePointLight,
 } from "./src/scene/Lighting";
 import { handleWindowResize } from "./src/utils/CanvasUtils";
@@ -18,7 +19,7 @@ const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
 camera.position.set(-500, -400, 800);
 
 //Lighting
-let aLight, dLight, tpLight, fourLight;
+let aLight, dLight, tpLight, fourLight, hLight;
 aLight = AmbientLight("rgb(255,255,255)", 10.0);
 dLight = DirectionalLight(
   "rgb(255,255,255)",
@@ -38,12 +39,14 @@ fourLight = FourPointUniformLight(
   { x: 500, y: 500, z: 500 },
   true
 );
+hLight = HemisphereLight("rgb(239,254,254)", "rgb(54,54,39)", 2);
 
 scene.add(
   fourLight.lightA,
   fourLight.lightB,
   fourLight.lightC,
-  fourLight.lightD
+  fourLight.lightD,
+  hLight.light
 );
 
 //Models
