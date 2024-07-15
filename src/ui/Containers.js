@@ -8,7 +8,6 @@
  * function StackingDiagram should be defined in Graphics.js
  */
 
-import { update } from "three/examples/jsm/libs/tween.module.js";
 import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
 
 //Global Variables
