@@ -13,6 +13,7 @@ import { UIElements } from "./main";
 import { CreateDiv, UpdateStyle } from "./src/utils/ScriptUtils";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { LayerTable } from "./src/ui/Containers";
+import FetchViewData from "./src/model/LoadViews";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
@@ -50,10 +51,18 @@ scene.add(
 );
 
 //Models
-let model;
+let model, views;
 model = await Fetch3DM("assets/models/Massing-Options.3dm", false, true);
 console.log(model.object);
 
+//Load Named Views
+views = await FetchViewData("assets/models/CameraPositions.json");
+let currentView = views[3];
+console.log(currentView);
+camera.position.copy(currentView.position);
+camera.lookAt(currentView.target);
+camera.fov = currentView.fov;
+console.log(camera);
 model.meshes.forEach((item) => {
   scene.add(item);
 });
