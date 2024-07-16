@@ -59,3 +59,6 @@ Information:
 - Set camera and controls focus to average center
 - Slow orbit on model load
 - Define unique material per object for hovering
+
+## Working Notes
+- Encounterd bug where extrusions failed to load as they did not have an associated Mesh object (?) current work around is to ConvertExtrusion in Rhino
