@@ -3,6 +3,11 @@
  * Loads camera positions from Named Views in the target model, using a JSON file
  */
 import * as THREE from "https://unpkg.com/three@0.164.1/build/three.module.js";
+/**
+ *
+ * @param {string} url  string: File path for named views JSON (created in GH)
+ * @returns             array: View objects containing: name, position, target, fov
+ */
 export default async function FetchViewData(url) {
   try {
     const response = await fetch(url);
