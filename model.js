@@ -14,6 +14,7 @@ import { CreateDiv, UpdateStyle } from "./src/utils/ScriptUtils";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { LayerTable } from "./src/ui/Containers";
 import FetchViewData from "./src/model/LoadViews";
+import PostProcessing from "./src/scene/Postprocessing";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
@@ -71,6 +72,9 @@ const fb = UIElements().fb;
 LayerTable(model.layers, fb);
 console.log(model);
 
+//Post-Processing
+const composer = PostProcessing(scene, renderer, camera);
+
 //Interaction
 window.addEventListener("mousemove", function (event) {
   let intersected = PointerHover(event, model.meshes, camera).object;
@@ -90,5 +94,6 @@ function animate() {
   requestAnimationFrame(animate);
   controls.update();
   render();
+  //composer.render();
 }
 animate();
