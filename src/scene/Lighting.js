@@ -127,7 +127,7 @@ export function Spotlight(color, intensity, pos, angle, shadow, showHelper) {
   light.castShadow = shadow;
   light.angle = Math.pi / angle;
   light.penumbra = 0.5;
-  light.decay = 1.0;
+  light.decay = 0.5;
   light.shadow.mapSize.width = 1024 * sDetail; // LOD for shadows
   light.shadow.mapSize.height = 1024 * sDetail; // LOD for shadows
   light.shadow.camera.near = 0.5;
@@ -187,29 +187,29 @@ export function ThreePointLight(color, intensity, pos, shadow) {
  * @param {bool} shadow bool: Toggle whether light casts shadow
  * @returns dict: lightA(obj), lightB(obj), lightC(obj)
  */
-export function FourPointUniformLight(color, intensity, pos, shadow) {
+export function FourPointUniformLight(color, intensity, pos, angle, shadow) {
   let aColor, bColor, cColor, dColor;
   let aLight, bLight, cLight, dLight;
 
   aColor = new THREE.Color(color);
-  aLight = new THREE.DirectionalLight(aColor, intensity);
-  aLight.position.set(pos.x, pos.y, pos.z);
-  aLight.castShadow = shadow;
+  aLight = Spotlight(color, intensity * 10, pos, angle, shadow).light;
+  aLight.angle = Math.PI / angle;
+  console.log(aLight);
 
   bColor = new THREE.Color(color);
-  bLight = new THREE.DirectionalLight(bColor, intensity);
+  bLight = new THREE.DirectionalLight(bColor, intensity / 2);
   bLight.position.set(-pos.x, pos.y, pos.z);
-  bLight.castShadow = shadow;
+  bLight.castShadow = false;
 
   cColor = new THREE.Color(color);
-  cLight = new THREE.DirectionalLight(cColor, intensity);
+  cLight = new THREE.DirectionalLight(cColor, intensity / 2);
   cLight.position.set(pos.x, -pos.y, pos.z);
-  cLight.castShadow = shadow;
+  cLight.castShadow = false;
 
   dColor = new THREE.Color(color);
-  dLight = new THREE.DirectionalLight(dColor, intensity);
+  dLight = new THREE.DirectionalLight(dColor, intensity / 2);
   dLight.position.set(-pos.x, -pos.y, pos.z);
-  dLight.castShadow = shadow;
+  dLight.castShadow = false;
 
   return {
     lightA: aLight,

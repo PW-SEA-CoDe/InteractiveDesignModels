@@ -37,8 +37,9 @@ tpLight = ThreePointLight(
 );
 fourLight = FourPointUniformLight(
   "rgb(255,255,255)",
-  2.5,
-  { x: 500, y: 500, z: 500 },
+  5,
+  { x: -500, y: -500, z: 500 },
+  4,
   true
 );
 hLight = HemisphereLight("rgb(239,254,254)", "rgb(54,54,39)", 2);
@@ -53,7 +54,7 @@ scene.add(
 
 //Models
 let model, views;
-model = await Fetch3DM("assets/models/Massing-Options.3dm", false, true);
+model = await Fetch3DM("assets/models/Massing-Options.3dm", true, true);
 console.log(model.object);
 
 //Load Named Views
@@ -93,7 +94,7 @@ function render() {
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
-  render();
   //composer.render();
+  render();
 }
 animate();

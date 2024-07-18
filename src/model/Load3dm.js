@@ -129,7 +129,6 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           return layerTree;
         }
         const layerTree = GetLayerTable();
-        console.log(layerTree);
 
         function GetGroups() {
           const modelGroups = object.userData.groups;
@@ -158,7 +157,6 @@ export default async function Fetch3DM(url, castShadow, receiveShadow) {
           return GroupSort;
         }
         const groups = GetGroups();
-        //console.log(groupSort);
 
         resolve({
           averageCenter: avgCenter,

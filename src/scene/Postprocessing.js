@@ -9,7 +9,7 @@ export default function PostProcessing(scene, renderer, camera) {
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   composer.addPass(new FilmPass(0.25, false));
-  composer.addPass(new RenderPixelatedPass(5, scene, camera));
+  //composer.addPass(new RenderPixelatedPass(5, scene, camera));
   composer.addPass(new SSAOPass(scene, camera, 1, 1));
 
   return composer;

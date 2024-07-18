@@ -18,13 +18,17 @@ export default function SceneInit() {
   scene.name = "Main_Scene";
 
   const renderer = new THREE.WebGLRenderer({
+    powerPreference: "high-performance",
+    stencil: "false",
     antialias: true, // Pixel smoothing
     alpha: true, // Transparent scene background
   });
   renderer.setSize(sceneWidth, sceneHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.gammaFactor = 0;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Other options available but PCF represents best balance of quality & performance
+  renderer.toneMapping = THREE.LinearToneMapping;
 
   sceneContainer.append(renderer.domElement);
 

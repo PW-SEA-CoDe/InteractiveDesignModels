@@ -58,6 +58,7 @@ export function LayerTable(layers, cont) {
       color: "white",
       fontSize: "14px",
       fontWeight: "600",
+      pointerEvents: "all",
     };
     const wrapper = CreateDiv("layer-title", wrapperStyle);
     wrapper.innerText = "Layer Table";
