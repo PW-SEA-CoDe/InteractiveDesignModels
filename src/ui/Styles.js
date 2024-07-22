@@ -1,3 +1,10 @@
+/**
+ * Modules for defining colors, styles and other style related scripts/elements to be loaded into site.
+ * Modules should be called into Containers.js when init of UI elements occurs, but can exist elsewhere as needed.
+ *
+ */
+
+//Colors
 export let pwColors = {
   //Blues
   darkBlue: "rgba(0,30,98,1)",
@@ -38,4 +45,22 @@ export let neutralColors = {
   darkGray50: "rgba(76,79,84,0.50)",
   darkGray25: "rgba(76,79,84,0.25)",
   lightGray: "rgba(236,239,234,1)",
+};
+
+//Styles
+export let containerStyles = {
+  flexCenterColumn: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  flexCenterRow: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
 };
