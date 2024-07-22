@@ -9,7 +9,7 @@
  */
 
 import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
-import { neutralColors, pwColors } from "./Styles";
+import { HoverStyle, neutralColors, pwColors } from "./Styles";
 
 //Global Variables
 const ui = document.getElementById("ui");
@@ -18,12 +18,14 @@ console.log("Imported " + ui.id + " correctly!");
 //UI Container Elements
 export function MobileTaskbar() {
   const style = {
+    pointerEvents: "all",
+
     //Position
     position: "absolute",
-    top: "90%",
-    left: "1%",
-    width: "98%",
-    height: "9%",
+    top: "92.5%",
+    left: "0%",
+    width: "100%",
+    height: "7.5%",
 
     //Display
     display: "flex",
@@ -32,15 +34,45 @@ export function MobileTaskbar() {
     justifyContent: "center",
 
     //Edges
-    borderRadius: "20px",
-    backdropFilter: "blur(5px)",
-    boxShadow: "0px 5px 10px rgba(25,25,25,0.5)",
+    borderRadius: "25px 25px 0px 0px",
+    backdropFilter: "blur(10px)",
+    boxShadow: `0px 50px 100px ${neutralColors.lightBlack50}`,
+    //mixBlendMode: "multiply",
 
     //Color
     backgroundColor: neutralColors.darkGray50,
   };
   const div = CreateDiv("taskbar", style);
   ui.append(div);
+
+  let buttons = ["Layers", "Views", "Groups", "Reset"];
+  const buttonStyle = {
+    padding: "1px",
+    height: "90%",
+    width: "12.5%",
+    backgroundColor: `${pwColors.lightGreen}`,
+    backgroundImage: `url("../assets/icons/Layers.png")`,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    borderRadius: "10px",
+    boxShadow: `0px 0px 10px ${neutralColors.darkGray50}`,
+    opacity: "0.85",
+  };
+  const button = CreateDiv("button", buttonStyle);
+  div.append(button);
+
+  let buttonHeight = window.getComputedStyle(button).getPropertyValue("height");
+  let buttonWidth = {
+    width: `${buttonHeight}`,
+  };
+
+  UpdateStyle(button, buttonWidth);
+  let hoverStyle = {
+    boxShadow: `0px 0px 5px ${neutralColors.darkGray}`,
+    opacity: "1.0",
+  };
+  HoverStyle(button, hoverStyle, buttonStyle);
 }
 
 export function FloatingTab() {

@@ -4,6 +4,8 @@
  *
  */
 
+import { UpdateStyle } from "../utils/ScriptUtils";
+
 //Colors
 export let pwColors = {
   //Blues
@@ -45,6 +47,12 @@ export let neutralColors = {
   darkGray50: "rgba(76,79,84,0.50)",
   darkGray25: "rgba(76,79,84,0.25)",
   lightGray: "rgba(236,239,234,1)",
+  //Blacks
+  fullBlack: "rgba(0,0,0,1)",
+  lightBlack: "rgba(26,29,34,1)",
+  lightBlack75: "rgba(26,29,34,0.75)",
+  lightBlack50: "rgba(26,29,34,0.50)",
+  lightBlack25: "rgba(26,29,34,0.25)",
 };
 
 //Styles
@@ -64,3 +72,14 @@ export let containerStyles = {
     textAlign: "center",
   },
 };
+
+//Interaction and Animation
+
+export function HoverStyle(target, activeStyle, inactiveStyle) {
+  target.addEventListener("mouseover", function () {
+    UpdateStyle(target, activeStyle);
+  });
+  target.addEventListener("mouseleave", function () {
+    UpdateStyle(target, inactiveStyle);
+  });
+}
