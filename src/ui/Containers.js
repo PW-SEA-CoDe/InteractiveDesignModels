@@ -9,10 +9,39 @@
  */
 
 import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
+import { neutralColors, pwColors } from "./Styles";
 
 //Global Variables
 const ui = document.getElementById("ui");
 console.log("Imported " + ui.id + " correctly!");
+
+//UI Container Elements
+export function MobileTaskbar() {
+  const style = {
+    //Position
+    position: "absolute",
+    top: "90%",
+    left: "1%",
+    width: "98%",
+    height: "9%",
+
+    //Display
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+
+    //Edges
+    borderRadius: "20px",
+    backdropFilter: "blur(5px)",
+    boxShadow: "0px 5px 10px rgba(25,25,25,0.5)",
+
+    //Color
+    backgroundColor: neutralColors.darkGray50,
+  };
+  const div = CreateDiv("taskbar", style);
+  ui.append(div);
+}
 
 export function FloatingTab() {
   let wrapper, wrapperStyle;
@@ -45,6 +74,7 @@ export function FloatingTab() {
   return wrapper;
 }
 
+//Functional UI Elements
 export function LayerTable(layers, cont) {
   const container = cont;
 
@@ -89,13 +119,13 @@ export function LayerTable(layers, cont) {
 
       borderRadius: "5px",
 
-      backgroundColor: "rgba(254,254,249,1)",
-      color: "rgba(54,54,49,1)",
+      backgroundColor: pwColors.lightGreen,
+      color: neutralColors.offWhite,
     };
     layers.forEach((layer) => {
       const activeStyle = {
-        backgroundColor: "rgba(254,254,249,1)",
-        color: "rgba(54,54,49,1)",
+        backgroundColor: pwColors.lightGreen,
+        color: neutralColors.offWhite,
         boxShadow: "2px 1px 0px rgba(50, 50, 50, 0.9)",
         fontWeight: "200",
       };
@@ -158,8 +188,8 @@ export function LayerTable(layers, cont) {
 
   function LayerToggle(layers) {
     const activeStyle = {
-      backgroundColor: "rgba(254,254,249,1)",
-      color: "rgba(54,54,49,1)",
+      backgroundColor: pwColors.lightGreen,
+      color: neutralColors.offWhite,
       fontWeight: "200",
     };
     const unactiveStyle = {

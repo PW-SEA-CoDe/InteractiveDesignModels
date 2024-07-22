@@ -1,3 +1,4 @@
+//Local Modules
 import SceneInit from "./src/scene/SceneInit";
 import Fetch3DM from "./src/model/Load3dm";
 import {
@@ -10,8 +11,6 @@ import {
 import { handleWindowResize } from "./src/utils/CanvasUtils";
 import { PointerHover } from "./src/model/Interaction";
 import { UIElements } from "./main";
-import { CreateDiv, UpdateStyle } from "./src/utils/ScriptUtils";
-import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { LayerTable } from "./src/ui/Containers";
 import FetchViewData from "./src/model/LoadViews";
 import PostProcessing from "./src/scene/Postprocessing";
@@ -21,20 +20,9 @@ const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
 camera.position.set(-500, -400, 800);
 
 //Lighting
-let aLight, dLight, tpLight, fourLight, hLight;
-aLight = AmbientLight("rgb(255,255,255)", 10.0);
-dLight = DirectionalLight(
-  "rgb(255,255,255)",
-  5.0,
-  { x: 500, y: 500, z: 200 },
-  true
-);
-tpLight = ThreePointLight(
-  "rgb(255,255,255)",
-  5.0,
-  { x: 500, y: 500, z: 200 },
-  true
-);
+let aLight, fourLight, hLight;
+aLight = AmbientLight("rgb(255,255,255)", 0.5);
+hLight = HemisphereLight("rgb(239,254,254)", "rgb(54,54,39)", 2);
 fourLight = FourPointUniformLight(
   "rgb(255,255,255)",
   5,
@@ -42,20 +30,22 @@ fourLight = FourPointUniformLight(
   4,
   true
 );
-hLight = HemisphereLight("rgb(239,254,254)", "rgb(54,54,39)", 2);
-
 scene.add(
+  aLight.light,
+  hLight.light,
   fourLight.lightA,
   fourLight.lightB,
   fourLight.lightC,
-  fourLight.lightD,
-  hLight.light
+  fourLight.lightD
 );
 
 //Models
 let model, views;
 model = await Fetch3DM("assets/models/Massing-Options.3dm", true, true);
 console.log(model.object);
+model.meshes.forEach((item) => {
+  scene.add(item);
+});
 
 //Load Named Views
 views = await FetchViewData("assets/models/CameraPositions.json");
@@ -65,10 +55,8 @@ camera.position.copy(currentView.position);
 camera.lookAt(currentView.target);
 camera.fov = currentView.fov;
 console.log(camera);
-model.meshes.forEach((item) => {
-  scene.add(item);
-});
 
+//UI
 const fb = UIElements().fb;
 LayerTable(model.layers, fb);
 console.log(model);
@@ -90,7 +78,6 @@ function render() {
   camera.updateMatrixWorld();
   renderer.render(scene, camera);
 }
-
 function animate() {
   requestAnimationFrame(animate);
   controls.update();

@@ -1,6 +1,7 @@
-import { FloatingTab } from "./src/ui/Containers";
+import { FloatingTab, MobileTaskbar } from "./src/ui/Containers";
 
 const fb = FloatingTab();
+const tb = MobileTaskbar();
 
 export function UIElements() {
   let elements = {};
