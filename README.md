@@ -82,6 +82,7 @@ src/↴
 assets/↴
         data/↴
         models/↴
+        icons/↴
 ```
 ### React
 

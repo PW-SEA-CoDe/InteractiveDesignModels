@@ -11,7 +11,7 @@ import {
 import { handleWindowResize } from "./src/utils/CanvasUtils";
 import { PointerHover } from "./src/model/Interaction";
 import { UIElements } from "./main";
-import { LayerTable } from "./src/ui/Containers";
+import { LayerTable } from "./src/ui/Components";
 import FetchViewData from "./src/model/LoadViews";
 import PostProcessing from "./src/scene/Postprocessing";
 

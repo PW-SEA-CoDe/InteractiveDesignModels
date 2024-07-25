@@ -75,11 +75,11 @@ export let containerStyles = {
 
 //Interaction and Animation
 
-export function HoverStyle(target, activeStyle, inactiveStyle) {
+export function HoverStyle(target, activeStyle, ...inactiveStyle) {
   target.addEventListener("mouseover", function () {
     UpdateStyle(target, activeStyle);
   });
   target.addEventListener("mouseleave", function () {
-    UpdateStyle(target, inactiveStyle);
+    UpdateStyle(target, ...inactiveStyle);
   });
 }
