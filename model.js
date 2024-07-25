@@ -8,7 +8,7 @@ import {
   HemisphereLight,
   ThreePointLight,
 } from "./src/scene/Lighting";
-import { handleWindowResize } from "./src/utils/CanvasUtils";
+import { handleWindowResize } from "./src/scene/SceneUtils";
 import { PointerHover } from "./src/model/Interaction";
 import { UIElements } from "./main";
 import { LayerTable } from "./src/ui/Components";
