@@ -4,7 +4,7 @@
  *
  */
 
-import { UpdateStyle } from "../utils/ScriptUtils";
+import { UpdateStyle } from "./UIUtils";
 
 //Colors
 export let pwColors = {

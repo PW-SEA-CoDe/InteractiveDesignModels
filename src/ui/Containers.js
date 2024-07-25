@@ -8,7 +8,7 @@
  * function StackingDiagram should be defined in Graphics.js
  */
 
-import { CreateDiv, UpdateStyle } from "../utils/ScriptUtils";
+import { CreateDiv, UpdateStyle } from "./UIUtils";
 import { HoverStyle, neutralColors, pwColors } from "./Styles";
 
 //Global Variables
