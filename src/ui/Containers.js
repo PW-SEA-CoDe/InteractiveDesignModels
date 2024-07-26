@@ -10,22 +10,24 @@
 
 import { CreateDiv, UpdateStyle } from "./UIUtils";
 import { HoverStyle, neutralColors, pwColors } from "./Styles";
+import { Button } from "./Components";
 
 //Global Variables
 const ui = document.getElementById("ui");
 console.log("Imported " + ui.id + " correctly!");
 
 //UI Container Elements
-export function MobileTaskbar() {
+export function Taskbar() {
   const style = {
     pointerEvents: "all",
 
     //Position
     position: "absolute",
-    top: "92.5%",
-    left: "0%",
-    width: "100%",
-    height: "7.5%",
+    top: "93%",
+    left: "2.5%",
+    width: "95%",
+    height: "6%",
+    zIndex: "1",
 
     //Display
     display: "flex",
@@ -33,56 +35,72 @@ export function MobileTaskbar() {
     alignItems: "center",
     justifyContent: "center",
 
-    //Edges
-    borderRadius: "25px 25px 0px 0px",
-    backdropFilter: "blur(10px)",
-    boxShadow: `0px 50px 100px ${neutralColors.lightBlack50}`,
-    border: "solid",
-    borderColor: `${neutralColors.lightBlack25}`,
-    borderWidth: "1px",
-    //mixBlendMode: "multiply",
-
     //Color
-    backgroundColor: neutralColors.lightBlack50,
+    backgroundColor: neutralColors.lightBlack75,
+
+    //Edges
+    borderRadius: "8px",
+    backdropFilter: "blur(10px)",
+    boxShadow: `0px 50px 100px ${neutralColors.lightBlack75}`,
   };
   const div = CreateDiv("taskbar", style);
   ui.append(div);
 
-  let buttons = ["Layers", "Views", "Groups", "Reset"];
-  const buttonStyle = {
-    padding: "1px",
-    margin: "0px 10px",
-    height: "90%",
-    width: "12.5%",
-    backgroundColor: `${pwColors.lightGreen}`,
-    backgroundImage: `url("../assets/icons/Layers.png")`,
-    backgroundSize: "contain",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    borderRadius: "10px",
-    boxShadow: `0px 0px 10px ${neutralColors.darkGray50}`,
-    opacity: "0.85",
-  };
-  const button = CreateDiv("button", buttonStyle);
-  const button1 = CreateDiv("button-1", buttonStyle);
-  const button2 = CreateDiv("button-2", buttonStyle);
-  div.append(button);
+  let button1 = Button("layers", `url("../assets/icons/Layers.png")`);
+  let button2 = Button("cameras", `url("../assets/icons/Cameras.png")`);
+  let button3 = Button("groups", `url("../assets/icons/Groups.png")`);
+  let button4 = Button("metrics", `url("../assets/icons/Metrics.png")`);
+
+  let buttons = [button1, button2, button3, button4];
   div.append(button1);
   div.append(button2);
+  div.append(button3);
+  div.append(button4);
 
-  let buttonHeight = window.getComputedStyle(button).getPropertyValue("height");
-  let buttonWidth = {
-    width: `${buttonHeight}`,
-  };
+  const menuStyle = {
+    pointerEvents: "all",
 
-  UpdateStyle(button, buttonWidth);
-  let hoverStyle = {
-    boxShadow: `0px 0px 5px ${neutralColors.darkGray}`,
-    opacity: "1.0",
+    //Position
+    position: "absolute",
+    bottom: "5%",
+    left: "2.5%",
+    width: "95%",
+    height: "1%",
+    zIndex: "0",
+
+    //Display
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+
+    //Color
+    backgroundColor: neutralColors.lightBlack25,
+
+    //Edges
+    borderRadius: "8px 8px 0px 0px",
+    backdropFilter: "blur(10px)",
+    boxShadow: `0px 10px 100px ${neutralColors.lightBlack25}`,
+
+    //Transitions
+    transition: "height 0.25s ease-in-out",
   };
-  HoverStyle(button, hoverStyle, buttonWidth, buttonStyle);
-  HoverStyle(button1, hoverStyle, buttonWidth, buttonStyle);
-  HoverStyle(button2, hoverStyle, buttonWidth, buttonStyle);
+  const menu = CreateDiv("taskbar-menu", menuStyle);
+  let menuOpen = false;
+  ui.append(menu);
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", function () {
+      if (menuOpen === false) {
+        menu.style.height = "60%";
+        menuOpen = true;
+      } else if (menuOpen === true) {
+        menu.style.height = "1%";
+        menuOpen = false;
+      }
+    });
+  });
 }
 
 export function FloatingTab() {

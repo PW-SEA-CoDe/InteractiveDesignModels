@@ -11,6 +11,32 @@ import { CreateDiv, UpdateStyle } from "./UIUtils";
 import { HoverStyle, neutralColors, pwColors } from "./Styles";
 
 //Functional UI Elements
+export function Button(id, icon) {
+  let buttonStyle = {
+    padding: "1px",
+    margin: "0px 10px",
+    height: "90%",
+    width: "10%",
+    backgroundImage: icon,
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    borderRadius: "5px",
+    opacity: "0.75",
+  };
+  let hoverStyle = {
+    opacity: "1.0",
+  };
+  let button = CreateDiv(id, buttonStyle);
+  //let buttonHeight = window.getComputedStyle(button).getPropertyValue("height");
+  //buttonStyle.width = buttonHeight;
+
+  UpdateStyle(button, buttonStyle);
+  HoverStyle(button, hoverStyle, buttonStyle);
+
+  return button;
+}
+
 export function LayerTable(layers, cont) {
   const container = cont;
 
