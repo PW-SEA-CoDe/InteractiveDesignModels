@@ -37,10 +37,13 @@ export function MobileTaskbar() {
     borderRadius: "25px 25px 0px 0px",
     backdropFilter: "blur(10px)",
     boxShadow: `0px 50px 100px ${neutralColors.lightBlack50}`,
+    border: "solid",
+    borderColor: `${neutralColors.lightBlack25}`,
+    borderWidth: "1px",
     //mixBlendMode: "multiply",
 
     //Color
-    backgroundColor: neutralColors.darkGray50,
+    backgroundColor: neutralColors.lightBlack50,
   };
   const div = CreateDiv("taskbar", style);
   ui.append(div);
@@ -48,6 +51,7 @@ export function MobileTaskbar() {
   let buttons = ["Layers", "Views", "Groups", "Reset"];
   const buttonStyle = {
     padding: "1px",
+    margin: "0px 10px",
     height: "90%",
     width: "12.5%",
     backgroundColor: `${pwColors.lightGreen}`,
@@ -60,7 +64,11 @@ export function MobileTaskbar() {
     opacity: "0.85",
   };
   const button = CreateDiv("button", buttonStyle);
+  const button1 = CreateDiv("button-1", buttonStyle);
+  const button2 = CreateDiv("button-2", buttonStyle);
   div.append(button);
+  div.append(button1);
+  div.append(button2);
 
   let buttonHeight = window.getComputedStyle(button).getPropertyValue("height");
   let buttonWidth = {
@@ -73,6 +81,8 @@ export function MobileTaskbar() {
     opacity: "1.0",
   };
   HoverStyle(button, hoverStyle, buttonWidth, buttonStyle);
+  HoverStyle(button1, hoverStyle, buttonWidth, buttonStyle);
+  HoverStyle(button2, hoverStyle, buttonWidth, buttonStyle);
 }
 
 export function FloatingTab() {

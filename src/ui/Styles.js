@@ -40,7 +40,13 @@ export let pwColors = {
 export let neutralColors = {
   //Whites
   white: "rgba(255,255,255,1)",
+  white75: "rgba(255,255,255,0.75)",
+  white50: "rgba(255,255,255,0.50)",
+  white25: "rgba(255,255,255,0.25)",
   offWhite: "rgba(243,243,239,1)",
+  offWhite75: "rgba(243,243,239,0.75)",
+  offWhite50: "rgba(243,243,239,0.50)",
+  offWhite25: "rgba(243,243,239,0.25)",
   //Grays
   darkGray: "rgba(76,79,84,1)",
   darkGray75: "rgba(76,79,84,0.75)",
