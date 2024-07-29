@@ -53,7 +53,7 @@ export function LayerTable(layers, cont) {
       pointerEvents: "all",
     };
     const wrapper = CreateDiv("layer-title", wrapperStyle);
-    wrapper.innerText = "Layer Table";
+    //wrapper.innerText = "Layer Table";
     container.append(wrapper);
   }
 

@@ -14,6 +14,7 @@ import { UIElements } from "./main";
 import { LayerTable } from "./src/ui/Components";
 import FetchViewData from "./src/model/LoadViews";
 import PostProcessing from "./src/scene/Postprocessing";
+import { Taskbar } from "./src/ui/Containers";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
@@ -57,8 +58,10 @@ camera.fov = currentView.fov;
 console.log(camera);
 
 //UI
-const fb = UIElements().fb;
-LayerTable(model.layers, fb);
+//const fb = UIElements().fb;
+const menu = UIElements().tb.mBody;
+
+LayerTable(model.layers, menu);
 console.log(model);
 
 //Post-Processing

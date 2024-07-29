@@ -10,7 +10,7 @@
 
 import { CreateDiv, UpdateStyle } from "./UIUtils";
 import { HoverStyle, neutralColors, pwColors } from "./Styles";
-import { Button } from "./Components";
+import { Button, LayerTable } from "./Components";
 
 //Global Variables
 const ui = document.getElementById("ui");
@@ -39,7 +39,7 @@ export function Taskbar() {
     backgroundColor: neutralColors.lightBlack75,
 
     //Edges
-    borderRadius: "8px",
+    borderRadius: "20px",
     backdropFilter: "blur(10px)",
     boxShadow: `0px 50px 100px ${neutralColors.lightBlack75}`,
   };
@@ -63,8 +63,8 @@ export function Taskbar() {
     //Position
     position: "absolute",
     bottom: "5%",
-    left: "2.5%",
-    width: "95%",
+    left: "57.5%",
+    width: "40%",
     height: "1%",
     zIndex: "0",
 
@@ -87,11 +87,40 @@ export function Taskbar() {
     transition: "height 0.25s ease-in-out",
   };
   const menu = CreateDiv("taskbar-menu", menuStyle);
+  let mHead, mBody, mFoot;
+  let hStyle, bStyle, fStyle;
+  hStyle = {
+    //Position
+    height: "5%",
+    width: "100%",
+    //Edges
+    padding: "10px",
+    //Color
+    color: `${neutralColors.white}`,
+    //Font
+    fontWeight: "400",
+  };
+  bStyle = {
+    height: "90%",
+    width: "90%",
+  };
+  fStyle = {
+    height: "5%",
+    width: "100%",
+  };
+  const menuHeader = CreateDiv("tb-menu-head", hStyle);
+  const menuBody = CreateDiv("tb-menu-body", bStyle);
+  const menuFooter = CreateDiv("tb-menu-foot", fStyle);
+  menu.append(menuHeader);
+  menu.append(menuBody);
+  menu.append(menuFooter);
+
   let menuOpen = false;
   ui.append(menu);
 
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
+      console.log(button.id);
       if (menuOpen === false) {
         menu.style.height = "60%";
         menuOpen = true;
@@ -99,8 +128,16 @@ export function Taskbar() {
         menu.style.height = "1%";
         menuOpen = false;
       }
+      menuHeader.innerText =
+        button.id.charAt(0).toUpperCase() + button.id.slice(1);
     });
   });
+
+  return {
+    mHead: menuHeader,
+    mBody: menuBody,
+    mFoot: menuFooter,
+  };
 }
 
 export function FloatingTab() {
