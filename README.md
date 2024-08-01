@@ -1,5 +1,9 @@
 # Interactive Design Models w/ Three.JS 3️⃣
 
+![code size](https://img.shields.io/github/languages/code-size/PW-SEA-CoDe/InteractiveDesignModels?style=flat-square)
+![license](https://img.shields.io/github/license/PW-SEA-CoDe/InteractiveDesignModels?style=flat-square)
+![issues](https://img.shields.io/github/issues/PW-SEA-CoDe/InteractiveDesignModels)
+
 > 💡 This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant and is intended for public use.
 
 The goal of this project is to research and develop a series of templated code bases for creating minimal standalone web applications that allows designers to load, render and interact with Rhino .3dm models using Three.js. The repository contains a starting template as well as some completed example projects with the aim of providing users with an entry point to build upon for their specific design needs.
@@ -54,7 +58,8 @@ npm run build
 ### What is Three?
 Three.js is a JavaScript Application Programming Interface (API) which allows users to create interactive 3D models using WebGL. Users can create 3D geometry in the browser by creating a Three ‘Scene’ which contains three key elements to visualize the 3d model:
 
-### Three.js 'Scene' Basic Structure
+<details>
+  <summary>Three.js 'Scene' Basic Structure</summary>
 The root object in Three is the 'Scene' which contains all other components. The Scene is appended to an existing DOM element and is then updated with any additional Three components or UI styling that is needed by the user. 
 
 _**At a minimum, the Scene, a Camera and a Renderer must be defined to create a Scene.**_  
@@ -89,6 +94,8 @@ Lastly, the user can populate the scene with any amount of meshes, or 3D geometr
 
 ### UI & Site Structure
 The template file developed for this project breaks down the site structure into two ‘layers’; the ‘Model’ layer contains the Three scene, while the ‘UI’ layer contains any UI elements that the user needs to implement to interact with their models or data. 
+
+</details>
 
 ## Opportunities & Purpose
 
