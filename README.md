@@ -4,7 +4,7 @@
 ![license](https://img.shields.io/github/license/PW-SEA-CoDe/InteractiveDesignModels?style=flat-square)
 ![issues](https://img.shields.io/github/issues/PW-SEA-CoDe/InteractiveDesignModels)
 
-> 💡 This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant and is intended for public use.
+> This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant. The codebase is intended for public use, and while currently under heavy development, we welcome contributions once the research grant has concluded (~ Q4 2024). 
 
 The goal of this project is to research and develop a series of templated code bases for creating minimal standalone web applications that allows designers to load, render and interact with Rhino .3dm models using Three.js. The repository contains a starting template as well as some completed example projects with the aim of providing users with an entry point to build upon for their specific design needs.
 
@@ -15,44 +15,45 @@ The goal of this project is to research and develop a series of templated code b
 [Preston Pape](https://github.com/prxsto)
 
 ### Tech Stack:
-- Plain Javascript / React
+- Plain Javascript / [React](https://react.dev/)
 - [Three.js](https://threejs.org/)
 - [Vite](https://vitejs.dev/)
 
-## Quickstart
+## 🚀 Quickstart
 
 The examples/ subfolder contains a variety of example Three.js web applications split into categories based upon framework/library choices. Within each, there are UI components to pull into fresh applications, as well as helper functions for loading models, adding environmental effects, and manipulating cameras, lighting, etc.
 
 ### Cloning & Install
 You can clone the examples to your local machine using the following commands (from within your desired directory):
-```
-git clone --no-checkout --depth=1 https://github.com/PW-SEA-CoDe/InteractiveDesignModels.git
-cd InteractiveDesignModels
-git checkout main -- examples
-rm -rf .git
+```shell
+$ git clone --no-checkout --depth=1 https://github.com/PW-SEA-CoDe/InteractiveDesignModels.git
+$ cd InteractiveDesignModels
+$ git checkout main -- examples
+$ rm -rf .git
 ```
 
 ### Dependencies
 Once cloned, you will need to install the dependencies. Make sure your working directory is the root of the example you are interested in, and then run the following command (subsituting 'npm' for your favorite Node.js package manager):
+```shell
+$ npm install
 ```
-npm install
-```
-This will reference the package.lock file to install all required dependencies. If you have any issues, please submit and issue or reach out for assistance.
+This will reference the package-lock.json file to install all required dependencies. If you have any issues, please submit and issue or reach out for assistance.
 
-### Deployment & Testing
+###  Deployment & Testing
 To deploy a testing environment using [Vite](https://vitejs.dev/), run:
-```
-npm run dev
+```shell
+$ npm run dev
 ```
 This will deploy a local version of the web application and you should see the port listed in your terminal output with which to view your app.
 Typically this will be http://localhost:XXXX/
 
 To build your application for deployment, you can instead run:
-```
-npm run build
+```shell
+$ npm run build
 ```
 
-## API Guide
+## 🛠️ API Guide
+> [!NOTE]
 > 💡 This project assumes that the user has at least basic understanding of HTML/CSS, Javascript, and Rhino/Grasshopper fundamentals. We will try our best to explain the code examples provided, but also do not want to overburden the project summary by explaining basic concepts.
 
 ### What is Three?
@@ -97,7 +98,7 @@ The template file developed for this project breaks down the site structure into
 
 </details>
 
-## Opportunities & Purpose
+## 🌟 Opportunities & Purpose
 
 ### Purpose and Goals
 #### What This Project Is
@@ -109,16 +110,13 @@ The template file developed for this project breaks down the site structure into
 
 ### Example Use Cases
 
-## Site Structure
+## 🖥️ Site Structure
 ### Overview
 ### Model 'Layer'
 ### UI 'Layer'
 ### Unique Conditions
 
-## Project Structure
-
-
-### Project Structure & Deployment
+## 📦 Project Structure
 
 #### Vanilla Javascript
 ```
@@ -141,7 +139,7 @@ assets/↴
 #### React/React Three Fiber
 #### Vue/TresJS
 
-## Accessing Model Data
+## 💾 Accessing Model Data
 ### Overview
 ### Initial Object3d data
 ### Layers & Groups
@@ -151,6 +149,6 @@ assets/↴
 #### Model Data
 #### Other Data
 
-## Summary & Next Steps
+## 🗒️ Summary & Next Steps
 
 ## Appendix
