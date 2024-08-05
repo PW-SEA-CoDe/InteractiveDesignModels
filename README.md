@@ -98,7 +98,8 @@ The template file developed for this project breaks down the site structure into
 
 </details>
 
-## 🌟 Opportunities & Purpose
+<details>
+<summary><h2>🌟 Opportunities & Purpose</summary>
 
 ### Purpose and Goals
 #### What This Project Is
@@ -110,11 +111,16 @@ The template file developed for this project breaks down the site structure into
 
 ### Example Use Cases
 
-## 🖥️ Site Structure
+</details>
+
+<details>
+<summary><h2>🖥️ Site Structure</summary>
+
 ### Overview
 ### Model 'Layer'
 ### UI 'Layer'
 ### Unique Conditions
+</details>
 
 ## 📦 Project Structure
 
@@ -139,7 +145,9 @@ assets/↴
 #### React/React Three Fiber
 #### Vue/TresJS
 
-## 💾 Accessing Model Data
+<details>
+<summary><h2>💾 Accessing Model Data</summary>
+
 ### Overview
 ### Initial Object3d data
 ### Layers & Groups
@@ -148,7 +156,12 @@ assets/↴
 ### Data
 #### Model Data
 #### Other Data
+</details>
 
-## 🗒️ Summary & Next Steps
+<details>
+<summary><h2>🗒️ Summary & Next Steps</summary>
+
+
+</details>
 
 ## Appendix

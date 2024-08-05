@@ -3,10 +3,8 @@ import SceneInit from "./src/scene/SceneInit";
 import Fetch3DM from "./src/model/Load3dm";
 import {
   AmbientLight,
-  DirectionalLight,
   FourPointUniformLight,
   HemisphereLight,
-  ThreePointLight,
 } from "./src/scene/Lighting";
 import { handleWindowResize } from "./src/scene/SceneUtils";
 import { PointerHover } from "./src/model/Interaction";
@@ -14,7 +12,6 @@ import { UIElements } from "./main";
 import { LayerTable } from "./src/ui/Components";
 import FetchViewData from "./src/model/LoadViews";
 import PostProcessing from "./src/scene/Postprocessing";
-import { Taskbar } from "./src/ui/Containers";
 
 //Scene
 const { scene, sceneContainer, renderer, camera, controls } = SceneInit();
