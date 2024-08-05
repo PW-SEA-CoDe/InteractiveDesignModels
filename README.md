@@ -21,7 +21,7 @@ The goal of this project is to research and develop a series of templated code b
 
 ## 🚀 Quickstart
 
-The examples/ subfolder contains a variety of example Three.js web applications split into categories based upon framework/library choices. Within each, there are UI components to pull into fresh applications, as well as helper functions for loading models, adding environmental effects, and manipulating cameras, lighting, etc.
+The ```examples``` subfolder contains a variety of example Three.js web applications split into categories based upon framework/library choices. Within each, there are UI components to pull into fresh applications, as well as helper functions for loading models, adding environmental effects, and manipulating cameras, lighting, etc.
 
 ### Cloning & Install
 You can clone the examples to your local machine using the following commands (from within your desired directory):
@@ -33,14 +33,14 @@ $ rm -rf .git
 ```
 
 ### Dependencies
-Once cloned, you will need to install the dependencies. Make sure your working directory is the root of the example you are interested in, and then run the following command (subsituting 'npm' for your favorite Node.js package manager):
+Once cloned, you will need to install the dependencies. Make sure your working directory is the root of the example you are interested in, and then run the following command (subsituting ```npm``` for your favorite Node.js package manager):
 ```shell
 $ npm install
 ```
 This will reference the package-lock.json file to install all required dependencies. If you have any issues, please submit and issue or reach out for assistance.
 
 ###  Deployment & Testing
-To deploy a testing environment using [Vite](https://vitejs.dev/), run:
+To deploy a testing environment using ```vite``` run:
 ```shell
 $ npm run dev
 ```
