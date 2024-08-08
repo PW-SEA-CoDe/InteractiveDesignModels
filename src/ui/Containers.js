@@ -64,7 +64,7 @@ export function Taskbar() {
     position: "absolute",
     bottom: "5%",
     left: "57.5%",
-    width: "40%",
+    width: "20%",
     height: "1%",
     zIndex: "0",
 

@@ -39,7 +39,7 @@ scene.add(
 
 //Models
 let model, views;
-model = await Fetch3DM("assets/models/Massing-Options.3dm", true, true);
+model = await Fetch3DM("assets/models/Design-Model.3dm", true, true);
 console.log(model.object);
 model.meshes.forEach((item) => {
   scene.add(item);

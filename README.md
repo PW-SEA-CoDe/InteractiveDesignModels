@@ -19,7 +19,9 @@ The goal of this project is to research and develop a series of templated code b
 - [Three.js](https://threejs.org/)
 - [Vite](https://vitejs.dev/)
 
-## 🚀 Quickstart
+<details closed>
+<summary><h2>🚀 Quickstart</summary>
+
 
 The ```examples``` subfolder contains a variety of example Three.js web applications split into categories based upon framework/library choices. Within each, there are UI components to pull into fresh applications, as well as helper functions for loading models, adding environmental effects, and manipulating cameras, lighting, etc.
 
@@ -51,13 +53,17 @@ To build your application for deployment, you can instead run:
 ```shell
 $ npm run build
 ```
+</details>
+<details>
+<summary><h2>🛠️ API Guide</summary>
 
-## 🛠️ API Guide
+## 
 > [!NOTE]
 > 💡 This project assumes that the user has at least basic understanding of HTML/CSS, Javascript, and Rhino/Grasshopper fundamentals. We will try our best to explain the code examples provided, but also do not want to overburden the project summary by explaining basic concepts.
 
 ### What is Three?
 Three.js is a JavaScript Application Programming Interface (API) which allows users to create interactive 3D models using WebGL. Users can create 3D geometry in the browser by creating a Three ‘Scene’ which contains three key elements to visualize the 3d model:
+
 
 <details>
   <summary>Three.js 'Scene' Basic Structure</summary>
@@ -97,7 +103,7 @@ Lastly, the user can populate the scene with any amount of meshes, or 3D geometr
 The template file developed for this project breaks down the site structure into two ‘layers’; the ‘Model’ layer contains the Three scene, while the ‘UI’ layer contains any UI elements that the user needs to implement to interact with their models or data. 
 
 </details>
-
+</details>
 <details>
 <summary><h2>🌟 Opportunities & Purpose</summary>
 
@@ -121,8 +127,8 @@ The template file developed for this project breaks down the site structure into
 ### UI 'Layer'
 ### Unique Conditions
 </details>
-
-## 📦 Project Structure
+<details>
+<summary><h2>📦 Project Structure</summary>
 
 #### Vanilla Javascript
 ```
@@ -144,6 +150,10 @@ assets/↴
 #### React
 #### React/React Three Fiber
 #### Vue/TresJS
+
+</details>
+
+
 
 <details>
 <summary><h2>💾 Accessing Model Data</summary>
