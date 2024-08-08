@@ -15,11 +15,11 @@ The goal of this project is to research and develop a series of templated code b
 [Preston Pape](https://github.com/prxsto)
 
 ### Tech Stack:
-- Plain Javascript / [React](https://react.dev/)
+- Javascript / [React](https://react.dev/)
 - [Three.js](https://threejs.org/)
 - [Vite](https://vitejs.dev/)
 
-<details closed>
+<details id="Quickstart" closed>
 <summary><h2>🚀 Quickstart</summary>
 
 
@@ -54,7 +54,23 @@ To build your application for deployment, you can instead run:
 $ npm run build
 ```
 </details>
-<details>
+
+<details id="Purpose">
+<summary><h2>🌟 Opportunities & Purpose</summary>
+
+### Purpose and Goals
+#### What This Project Is
+#### What This Project Isn't
+
+### Opportunities to elevate our workflow
+#### Evolving How We Share Design Ideas
+#### Improving How We Communicate Design Information
+
+### Example Use Cases
+
+</details>
+
+<details id="Api-Guide">
 <summary><h2>🛠️ API Guide</summary>
 
 ## 
@@ -104,20 +120,6 @@ The template file developed for this project breaks down the site structure into
 
 </details>
 </details>
-<details>
-<summary><h2>🌟 Opportunities & Purpose</summary>
-
-### Purpose and Goals
-#### What This Project Is
-#### What This Project Isn't
-
-### Opportunities to elevate our workflow
-#### Evolving How We Share Design Ideas
-#### Improving How We Communicate Design Information
-
-### Example Use Cases
-
-</details>
 
 <details>
 <summary><h2>🖥️ Site Structure</summary>
@@ -127,10 +129,33 @@ The template file developed for this project breaks down the site structure into
 ### UI 'Layer'
 ### Unique Conditions
 </details>
-<details>
+
+
+<details id="Proj-Structure">
 <summary><h2>📦 Project Structure</summary>
 
-#### Vanilla Javascript
+### Overview
+A goal of this project is to develop basic templated codebases to allow users to quickly load their design models into a web applicaiton, which comes pre-built with core functions. This means balancing adding as much additional functionality to the 'template' while also minimizing the size and complexity of the codebase. Similary, we have tried to develop a comparable codebase in a variety of frameworks to allow users a greater spectrum of entry points depending on their preferences and backgrounds. 
+
+#### Basic Project Module Structure
+Regardless of framework, we have tried our best to organize sub-folders which contain modules used to set-up key functions across the site. These folders listed below should contain all scripts used to define the building blocks of the site:
+```
+main               // Call functions related to UI
+model              // Call functions related to Scene and Model 
+src/↴
+     data/↴          // Data formatting/importing
+     model/↴         // Model interaction
+     scene/↴         // Scene (initialization, post-processing, lighting)
+     ui/↴            // UI elements (containers, graphics, styling)
+     utils/↴         // Site Utilities (window resize, helper functions, etc.) 
+assets/↴
+     data/↴          // Data related to models (json, csv, etc.)
+     models/↴        // Models to be loaded into site
+     icons/↴         // UI icons and images
+```
+Within each of these folders, we have tried to simplify the number of unique scripts as much as possible, aiming to create one or two scripts which export a variety of relevant functions to be called higher up in the project structure.
+
+### Vanilla Javascript
 ```
 index.html              // Entry point, contains core elements
 style.css               // Styling for html,body all other styles handled in JS
@@ -147,19 +172,36 @@ assets/↴
         models/↴
         icons/↴
 ```
-#### React
-#### React/React Three Fiber
-#### Vue/TresJS
+### React
+### React/React Three Fiber
+### Vue/TresJS
 
 </details>
 
 
 
-<details>
-<summary><h2>💾 Accessing Model Data</summary>
+<details id="Model-Data">
+<summary><h2>💾 Model Information</summary>
 
 ### Overview
-### Initial Object3d data
+Three natively imports some model information directly from your Rhino .3dm file, however some key information is not imported, and other information is not easily accessible with the out-of-the-box import. This section will aim to explain the process of accessing Rhino model information and breakdown the scripts included in this project that assist with this effort.
+
+### Native .3dm Information
+The current functionality of Three allows users to load .3dm files with the following model information directly associated to a dictionary referenced as the model 'object'. 
+```
+Natively Imported Information
+- Geometry
+- Layer ID's
+- Group ID's 
+- Materials
+
+Currently Unsupported Information
+- Geometry associated to each Layer
+- Geometry associated to each group
+- Unique materials for each element (for interaction)
+- Object center points
+```
+
 ### Layers & Groups
 ### Materials
 ### Cameras
@@ -168,7 +210,7 @@ assets/↴
 #### Other Data
 </details>
 
-<details>
+<details id="Summary">
 <summary><h2>🗒️ Summary & Next Steps</summary>
 
 
