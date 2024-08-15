@@ -8,6 +8,10 @@
 
 The goal of this project is to research and develop a series of templated code bases for creating minimal standalone web applications that allows designers to load, render and interact with Rhino .3dm models using Three.js. The repository contains a starting template as well as some completed example projects with the aim of providing users with an entry point to build upon for their specific design needs.
 
+> [!IMPORTANT]  
+> Examples are currently held in siloed repositories while under development: <br/>
+> [Vanilla](https://github.com/PW-SEA-CoDe/IDM-Vanilla) | [React](https://github.com/PW-SEA-CoDe/IDM-React) | [React Three Fiber](https://github.com/PW-SEA-CoDe/IDM-R3F)
+
 ### Contributors:
 
 [William Franklin](https://github.com/wmfranklin20)
