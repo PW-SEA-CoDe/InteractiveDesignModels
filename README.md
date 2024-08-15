@@ -169,11 +169,29 @@ src/↴
         utils/↴         // Site Utilities (window resize, helper functions, etc.) 
 assets/↴
         data/↴
-        models/↴
+        models/↴        // holds rhino (.3dm) files
         icons/↴
 ```
 ### React
-### React/React Three Fiber
+### React Three Fiber
+```
+index.html                    // entry point, contains core elements
+src/↴
+        index.css             // base styling, component styling will override
+        index.jsx             // main react file, declare components here 
+        scene.jsx             // holds scene objects (models/lights/etc.)
+        assets/↴              // assets- dynamic upon state/props
+        components/↴          // react components and their stylesheets, add subfolders by use
+        lib/↴                 // global constants, hooks, helper functions, etc. 
+                constants.js  // constants for all components
+                hooks.js      // custom react hooks
+                # types.ts    // custom typescript types (if typescript project)
+                utils.js      // helper functions
+public/↴                      
+        images/↴              // holds images/textures/icons (png/jpg/etc.)
+        models/↴              // holds rhino (.3dm) files
+        fonts/↴               // holds fonts (prefer .woff2 if possible)
+```
 ### Vue/TresJS
 
 </details>
