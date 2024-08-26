@@ -63,8 +63,8 @@ export function Taskbar() {
     //Position
     position: "absolute",
     bottom: "5%",
-    left: "57.5%",
-    width: "20%",
+    left: "45%",
+    width: "50%",
     height: "1%",
     zIndex: "0",
 
@@ -76,10 +76,10 @@ export function Taskbar() {
     overflow: "hidden",
 
     //Color
-    backgroundColor: neutralColors.lightBlack25,
+    backgroundColor: neutralColors.lightBlack50,
 
     //Edges
-    borderRadius: "8px 8px 0px 0px",
+    borderRadius: "8px",
     backdropFilter: "blur(10px)",
     boxShadow: `0px 10px 100px ${neutralColors.lightBlack25}`,
 
@@ -96,9 +96,10 @@ export function Taskbar() {
     //Edges
     padding: "10px",
     //Color
-    color: `${neutralColors.white}`,
+    color: `${neutralColors.offWhite}`,
     //Font
-    fontWeight: "400",
+    fontWeight: "600",
+    textAlign: "center",
   };
   bStyle = {
     height: "90%",

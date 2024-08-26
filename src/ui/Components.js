@@ -18,10 +18,11 @@ export function Button(id, icon) {
     height: "90%",
     width: "10%",
     backgroundImage: icon,
+    backgroundColor: neutralColors.darkGray25,
     backgroundSize: "contain",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    borderRadius: "5px",
+    borderRadius: "10px",
     opacity: "0.75",
   };
   let hoverStyle = {
@@ -81,19 +82,19 @@ export function LayerTable(layers, cont) {
 
       borderRadius: "5px",
 
-      backgroundColor: pwColors.lightGreen,
+      backgroundColor: neutralColors.darkGray,
       color: neutralColors.offWhite,
     };
     layers.forEach((layer) => {
       const activeStyle = {
-        backgroundColor: pwColors.lightGreen,
+        backgroundColor: neutralColors.darkGray75,
         color: neutralColors.offWhite,
         boxShadow: "2px 1px 0px rgba(50, 50, 50, 0.9)",
         fontWeight: "200",
       };
       const unactiveStyle = {
-        backgroundColor: "rgba(104,104,99,1)",
-        color: "rgba(254,254,249,1)",
+        backgroundColor: neutralColors.offWhite50,
+        color: neutralColors.offWhite,
         fontWeight: "100",
       };
       const div = CreateDiv(`${layer.name}`, layerStyle);
@@ -150,13 +151,13 @@ export function LayerTable(layers, cont) {
 
   function LayerToggle(layers) {
     const activeStyle = {
-      backgroundColor: pwColors.lightGreen,
+      backgroundColor: neutralColors.darkGray,
       color: neutralColors.offWhite,
       fontWeight: "200",
     };
     const unactiveStyle = {
-      backgroundColor: "rgba(104,104,99,1)",
-      color: "rgba(254,254,249,1)",
+      backgroundColor: neutralColors.offWhite50,
+      color: neutralColors.offWhite,
       fontWeight: "100",
     };
     const layerTable = document.getElementById("layer-list");

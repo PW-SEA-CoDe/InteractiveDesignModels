@@ -69,14 +69,22 @@ $ npm run build
 <summary><h2>🌟 Opportunities & Purpose</summary>
 
 ### Purpose and Goals
-#### What This Project Is
-#### What This Project Isn't
 
-### Opportunities to elevate our workflow
-#### Evolving How We Share Design Ideas
-#### Improving How We Communicate Design Information
+Across the AEC industry, digital innovation is changing the way that we communicate design. IDM represents an exciting opportunity to bring our design models to life and allow designers and clients to interact with our design in a more meaningful way when compared to static presentation files. Similarly, leveraging web interaction can allow users to explore different aspects of our design ideas that are otherwise too difficult to convey in traditional presentation methods. 
 
-### Example Use Cases
+
+### Opportunities
+
+The potential opportunities to leverage this technology are endless. Below are just a few potential use cases that can help elevate our process and design:
+
+Design:
+ - Toggle between design options without need for multiple pages
+
+Sustainability:
+ - Understand shading impact of design options in real-time and with user control of sun position
+
+Metrics:
+ - Visualize key building or campus metrics aligned with building models. 
 
 </details>
 
