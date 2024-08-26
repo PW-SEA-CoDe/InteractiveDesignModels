@@ -6,11 +6,17 @@
 
 > This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant. The codebase is intended for public use, and while currently under heavy development, we welcome contributions once the research grant has concluded (~ Q4 2024). 
 
-The goal of this project is to research and develop a series of templated code bases for creating minimal standalone web applications that allows designers to load, render and interact with Rhino .3dm models using Three.js. The repository contains a starting template as well as some completed example projects with the aim of providing users with an entry point to build upon for their specific design needs.
+### Overview:
 
-> [!IMPORTANT]  
-> Examples are currently held in siloed repositories while under development: <br/>
+Interactive Design Models (IDM) is a project focused on using Three.js to create a templated code base which acts as an entry point for designers to load and interact with Rhino .3dm files in a lightweight standalone web application. 
+
+The goal of this project is to define a minimal framework for implementing a UI, loading a model, accessing model infromation and establishing interactivity between the UI and model. Our hope is that this framework acts as a starting point for users to build out more complex applications unique to their projects needs. In support of that goal, we have worked to create a series of different frameworks, these different approaches have been siloed to seperate repositories where they can be cloned. Additionally, we have strived to include some initial UI components that capture some key model interactions (layer table, sun controls, etc.) and have included these components in each framework's default setup.
+
+
+> Code-bases and examples are currently held in unique repositories while under development: <br/>
 > [Vanilla](https://github.com/PW-SEA-CoDe/IDM-Vanilla) | [React](https://github.com/PW-SEA-CoDe/IDM-React) | [React Three Fiber](https://github.com/PW-SEA-CoDe/IDM-R3F)
+
+We hope that this project provides users with a manageable access point to create their own interactive 3D models and hope to continue developing the base capabilities associated with this project over time. 
 
 ### Contributors:
 
