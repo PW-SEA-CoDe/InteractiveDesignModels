@@ -84,6 +84,7 @@ export function LayerTable(layers, cont) {
 
       backgroundColor: neutralColors.darkGray,
       color: neutralColors.offWhite,
+      boxShadow: "0px 2px 2px rgb(50,50,50)",
     };
     layers.forEach((layer) => {
       const activeStyle = {
@@ -91,11 +92,13 @@ export function LayerTable(layers, cont) {
         color: neutralColors.offWhite,
         boxShadow: "2px 1px 0px rgba(50, 50, 50, 0.9)",
         fontWeight: "200",
+        boxShadow: "0px 2px 2px rgb(50,50,50)",
       };
       const unactiveStyle = {
         backgroundColor: neutralColors.offWhite50,
         color: neutralColors.offWhite,
         fontWeight: "100",
+        boxShadow: "0px 0px 0px rgb(50,50,50)",
       };
       const div = CreateDiv(`${layer.name}`, layerStyle);
       div.innerText = layer.name;
@@ -154,11 +157,13 @@ export function LayerTable(layers, cont) {
       backgroundColor: neutralColors.darkGray,
       color: neutralColors.offWhite,
       fontWeight: "200",
+      boxShadow: "0px 2px 2px rgb(50,50,50)",
     };
     const unactiveStyle = {
       backgroundColor: neutralColors.offWhite50,
       color: neutralColors.offWhite,
       fontWeight: "100",
+      boxShadow: "0px 0px 0px rgb(50,50,50)",
     };
     const layerTable = document.getElementById("layer-list");
     let uiLayers = layerTable.querySelectorAll("div");
