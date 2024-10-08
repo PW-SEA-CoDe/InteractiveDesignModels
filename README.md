@@ -27,15 +27,15 @@ This ReadMe will be the primary resource for cataloguing our research to-date. O
 
 ### Project Scope & Purpose
 
-#### What is Three.js?
+#### <ins>What is Three.js?
 
 [Three.js](https://threejs.org/) is a Javascript Application Programming Interface(API) which allows users to create 3D geometry in a web browser using [WebGL](https://www.khronos.org/webgl/). Three's high-level programming allows for users to more quickly create complex 3D scenes and objects and offers a wide range of features and flexibility.  Notably for this project, Three.js provides a range of 'out-of-the-box' model loaders for popular file types such as .gltf, .obj, and, most importantly for this project, .3dm. 
 
-#### Why Three.js?
+#### <ins>Why Three.js?
 
 There are multiple libraries which, just like Three.js, reference down to WebGL, such as [Stack.gl](https://stack.gl/), [Deck.gl](https://deck.gl/), and [Bablyon.js](https://www.babylonjs.com/). Not only is Three.js the most popular of these WebGL libraries, but it also, in the opinion of the project team, provides the greatest flexibility & ease-of-use. Although libraries such as Deck.gl provide powerful large-scale data visulaization and analysis, the scope of this project is much smaller and focused around how we can load our specific design models used in every-day practice. For these reasons, Three.js appeared to be the best library to expand upon and understand.
 
-#### Project Scope
+#### <ins>Project Scope
 
 Given the limited time granted as part of the Innovation Incubator process, in this early stage of the project the focus of the project centered around creating a minimal viable web application, which depended on understanding a few key elements including:
 
@@ -54,7 +54,7 @@ Again, given the limited time, the project team developed the IDM-React framewor
 
 ### Opportunities
 
-#### What is possible?
+#### <ins>What is possible?
 
 IDM provides an exciting opportunity for designers to find new ways of communicating our design visions. Given the web's natural ability for interaction, multiple states and animation, vizualizing design models through this medium allows for opportunities that our standard, static presentation methods cannot achieve. 
 
@@ -66,11 +66,11 @@ The list of potential applications of this process are vast, but there are a few
 - Update model materials live
 - Visualize building data associated to 3D geometry and space
 
-#### Who is this project for?
+#### <ins>Who is this project for?
 
 Our hope is that IDM provides an entry point for any designer looking to utilize web technology in their design process. We understand however, that even our distillation of Three.js will require at least basic knowledge of web development and programming paradigms.
 
-#### What's next from here?
+#### <ins>What's next from here?
 
 Our goal is to continue to expand upon the work done during the Innovation Incubator, and grow the capabilities and resources available in this codebase. More and more opportunities to leverage this technology continue to appear in real projects, and our hope is that we can continue to merge that new knowledge into these repositories so that it continues to act as a 'living' template and resource both internally for Perkins&Will, but also externally for other designers who are curious to leverage the technology on their own projects.
 
@@ -85,6 +85,46 @@ Specific technical features which the project team would like to develop & imple
 - Back-end & server-side integrations
 
 ## 🛠️ API Guide
+
+### Overview
+
+#### <ins>API Documentation
+
+Three.js's API is robust and covers a wide range of different components. The full documentation can be found here: [Three.js Documentation](https://threejs.org/docs/index.html#manual/en/introduction/Installation), but we will summarize the core elements that are critical for our project. 
+
+### Key Components
+
+In order to create a model and scene which can be interacted with, Three.js provides a layered structure of elements which much be called and connected in the application. Below is a rough diagram explaing the flow of these elements, staring at tertiary levels where functions are adding control or flexibility to secondary elements, which define key elements that are visualized, and which depend on a few core elements to be rendered in the browser. 
+
+<img src='./assets/IDM-Three-Component-Tree.jpg' width='80%' title='Three.js Component Tree'>
+
+#### <ins>Core Elements
+
+Three.js depends on three 'root' components which define the view of the model:
+
+- Scene - The 3D scene in which the model lives
+- Camera - The camera which creates a window through which to view the scene
+- Renderer - The renderer which renders the camera's view of the scene.
+
+Once these components are added to the project, the renderer then runs on a loop to produce snapshots of the scene. Note that each of these components has their own unique properties which can be updated as needed for your project. The IDM projects have created default values for these properties but refer to the Three.js Documentation for further information
+
+#### <ins>Secondary Elements
+
+Once the core elements have been added to the project, a second level of critical components are then needed
+
+- Controls - Instructions for the camera to listen to the mouse, and keyboard for movement controls
+- Lighting - Lights the scene and geometry (casting light for shadows)
+- Geometry - Objects to be loaded into the scene
+- Loaders - Allows for external 3d file types to be loaded into the scene
+
+#### <ins>Tertiary Elements
+
+- Materials - Assignable materials to control color, reflectivity, metalness, etc.
+- Raycaster - Method which allows Three.js to track the mouse position over the scene and allows interaction with model components
+- Helpers - Assistant components to visualize the locations of key components (lights, camera, etc.)
+- Post-processing - Post-processing effects and styling
+
+### Model Loading
 
 ## 🖥️ Site Structure
 
