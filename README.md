@@ -128,34 +128,38 @@ Once the core elements have been added to the project, a second level of critica
 
 ## 🖥️ Site Structure
 
+### General Approach
+
 ## 📦 Project Structure
+
+### General Approach
+
+#### <ins>Modularization & Flexibility
+
+Our goal in writing the codebases for this project was to allow maximum flexibility of the web applications where possible. To achieve this, we aimed to 'modularize' components as much as possible.  This approach provided some key benefits:
+
+- Breaks down large, complicated, Three.js components into smaller files which can be more clearly annotated
+- Allows components to be called as-needed, reducing application overhead and un-used elements
+- Aligns components with Three.js component tree structure, to help uses intuit the development pipeline and expand their tree as needed
+
+#### <ins>Folder Structure
+
+
+
+### Framework Specific Structures
+
+Each framwork implemented in this project has its own folder and module structure approach. Please refer to the ReadMe in each companion repository for futher information on the respect structure of each project.
 
 ## 🦏 .3dm Model Loading & Data
 
+### Overview
+
+### Natively Loaded Data
+
+### Non-Natively Loaded Data
+
 ## 🗒️ Summary & Next Steps
 
-<details id="Purpose">
-<summary><h2>🌟 Opportunities & Purpose</summary>
-
-### Purpose and Goals
-
-Across the AEC industry, digital innovation is changing the way that we communicate design. IDM represents an exciting opportunity to bring our design models to life and allow designers and clients to interact with our design in a more meaningful way when compared to static presentation files. Similarly, leveraging web interaction can allow users to explore different aspects of our design ideas that are otherwise too difficult to convey in traditional presentation methods. 
-
-
-### Opportunities
-
-The potential opportunities to leverage this technology are endless. Below are just a few potential use cases that can help elevate our process and design:
-
-Design:
- - Toggle between design options without need for multiple pages
-
-Sustainability:
- - Understand shading impact of design options in real-time and with user control of sun position
-
-Metrics:
- - Visualize key building or campus metrics aligned with building models. 
-
-</details>
 
 <details id="Api-Guide">
 <summary><h2>🛠️ API Guide</summary>
