@@ -6,7 +6,7 @@
 
 > This project is part of the 2024 Perkins&Will 'Innovation Incubator' research grant. The codebase is intended for public use, and while currently under heavy development, we welcome contributions once the research grant has concluded (~ Q4 2024). 
 
-### Overview:
+## Overview
 
 Interactive Design Models (IDM) is a project started during the Spring 2024 Perkins&Will Innovation Incubator. The overall goal of this project is to research, test and implement a templeted codebase using Three.js which allows designers to load and interact with Rhino .3dm files in a lightweight stand-alone web application.
 
@@ -23,41 +23,76 @@ This ReadMe will be the primary resource for cataloguing our research to-date. O
 
 [William Franklin](https://github.com/wmfranklin20) | [Preston Pape](https://github.com/prxsto)
 
-<details id="Quickstart" closed>
-<summary><h2>🚀 Quickstart</summary>
+## 🌟 Opportunities & Purpose
+
+### Project Scope & Purpose
+
+#### What is Three.js?
+
+[Three.js](https://threejs.org/) is a Javascript Application Programming Interface(API) which allows users to create 3D geometry in a web browser using [WebGL](https://www.khronos.org/webgl/). Three's high-level programming allows for users to more quickly create complex 3D scenes and objects and offers a wide range of features and flexibility.  Notably for this project, Three.js provides a range of 'out-of-the-box' model loaders for popular file types such as .gltf, .obj, and, most importantly for this project, .3dm. 
+
+#### Why Three.js?
+
+There are multiple libraries which, just like Three.js, reference down to WebGL, such as [Stack.gl](https://stack.gl/), [Deck.gl](https://deck.gl/), and [Bablyon.js](https://www.babylonjs.com/). Not only is Three.js the most popular of these WebGL libraries, but it also, in the opinion of the project team, provides the greatest flexibility & ease-of-use. Although libraries such as Deck.gl provide powerful large-scale data visulaization and analysis, the scope of this project is much smaller and focused around how we can load our specific design models used in every-day practice. For these reasons, Three.js appeared to be the best library to expand upon and understand.
+
+#### Project Scope
+
+Given the limited time granted as part of the Innovation Incubator process, in this early stage of the project the focus of the project centered around creating a minimal viable web application, which depended on understanding a few key elements including:
+
+- Three.js Scene set-up (camera, lighting, scene)
+- .3dm Model loading & data access (geometry, layers, materials)
+- Construction of basic UI elements which interact with model & data (show/hide, light controls)
+
+As mentioned in the overview, the project team also wanted to dedicate time to explore how Three.js can be integrated into different Javascript frameworks. As part of this early scope, the project focused around three different frameworks implementations:
+
+- Three.js / Javascript (Plain) - The most basic implementation & using Three.js's default API
+- Three.js / React - Basic Three.js but with React to control the UI
+- [React-Three-Fiber(R3F)](https://r3f.docs.pmnd.rs/getting-started/introduction) / React - Utilizes a wrapping of Three.js into React components as R3F, with React UI.
+
+Again, given the limited time, the project team developed the IDM-React framework only to the point of loading a .3dm file, and then focused efforts on the two other, and more clearly unique, frameworks in IDM-Vanille & IDM-R3F to better understand the two different implementations.
 
 
-The ```examples``` subfolder contains a variety of example Three.js web applications split into categories based upon framework/library choices. Within each, there are UI components to pull into fresh applications, as well as helper functions for loading models, adding environmental effects, and manipulating cameras, lighting, etc.
+### Opportunities
 
-### Cloning & Install
-You can clone the examples to your local machine using the following commands (from within your desired directory):
-```shell
-$ git clone --no-checkout --depth=1 https://github.com/PW-SEA-CoDe/InteractiveDesignModels.git
-$ cd InteractiveDesignModels
-$ git checkout main -- examples
-$ rm -rf .git
-```
+#### What is possible?
 
-### Dependencies
-Once cloned, you will need to install the dependencies. Make sure your working directory is the root of the example you are interested in, and then run the following command (subsituting ```npm``` for your favorite Node.js package manager):
-```shell
-$ npm install
-```
-This will reference the package-lock.json file to install all required dependencies. If you have any issues, please submit and issue or reach out for assistance.
+IDM provides an exciting opportunity for designers to find new ways of communicating our design visions. Given the web's natural ability for interaction, multiple states and animation, vizualizing design models through this medium allows for opportunities that our standard, static presentation methods cannot achieve. 
 
-###  Deployment & Testing
-To deploy a testing environment using ```vite``` run:
-```shell
-$ npm run dev
-```
-This will deploy a local version of the web application and you should see the port listed in your terminal output with which to view your app.
-Typically this will be http://localhost:XXXX/
+The list of potential applications of this process are vast, but there are a few key ways that this methodology could be utilized to view our design ideas in new ways:
 
-To build your application for deployment, you can instead run:
-```shell
-$ npm run build
-```
-</details>
+- Live, 3D view of models in context
+- Toggle between design options
+- Control sun angle/position to view shade implications in real-time
+- Update model materials live
+- Visualize building data associated to 3D geometry and space
+
+#### Who is this project for?
+
+Our hope is that IDM provides an entry point for any designer looking to utilize web technology in their design process. We understand however, that even our distillation of Three.js will require at least basic knowledge of web development and programming paradigms.
+
+#### What's next from here?
+
+Our goal is to continue to expand upon the work done during the Innovation Incubator, and grow the capabilities and resources available in this codebase. More and more opportunities to leverage this technology continue to appear in real projects, and our hope is that we can continue to merge that new knowledge into these repositories so that it continues to act as a 'living' template and resource both internally for Perkins&Will, but also externally for other designers who are curious to leverage the technology on their own projects.
+
+Specific technical features which the project team would like to develop & implement in the future include:
+
+- Loading saved views from Rhino file into accessible camera positions in Three
+- More robust camera and lighting controls
+- Building data, tied to 3D geometry and space & companion visualization graphics
+- Different framework implementations including Vue and Svelte
+- General style overhauls and guidelines
+- QOL updates
+- Back-end & server-side integrations
+
+## 🛠️ API Guide
+
+## 🖥️ Site Structure
+
+## 📦 Project Structure
+
+## 🦏 .3dm Model Loading & Data
+
+## 🗒️ Summary & Next Steps
 
 <details id="Purpose">
 <summary><h2>🌟 Opportunities & Purpose</summary>
