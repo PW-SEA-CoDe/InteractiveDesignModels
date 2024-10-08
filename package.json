@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "postprocessing": "^6.35.6",
-    "three": "^0.166.1",
-    "vite": "^5.3.1"
-  }
-}

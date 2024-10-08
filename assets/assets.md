@@ -1,1 +1,0 @@
-### Folder containing assets to load into site.

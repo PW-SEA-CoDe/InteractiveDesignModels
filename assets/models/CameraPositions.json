@@ -1,6 +1,0 @@
-[
-    {"name": "Test Camera One", "position": "{-400, -375, 850}", "target": "{-25, 0, 350}", "fov": "25.0"},
-    {"name": "Test Camera Two", "position": "{450, -375, 750}", "target": "{150, 25, 225}", "fov": "25.0"},
-    {"name": "Test Camera Three", "position": "{-250, 400, 850}", "target": "{140, 125, 340}", "fov": "25.0"},
-    {"name": "Test Camera Four", "position": "{155, -400, 915}", "target": "{150, 125, 165}", "fov": "25.0"}
-]
