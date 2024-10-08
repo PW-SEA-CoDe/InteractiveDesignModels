@@ -8,26 +8,20 @@
 
 ### Overview:
 
-Interactive Design Models (IDM) is a project focused on using Three.js to create a templated code base which acts as an entry point for designers to load and interact with Rhino .3dm files in a lightweight standalone web application. 
+Interactive Design Models (IDM) is a project started during the Spring 2024 Perkins&Will Innovation Incubator. The overall goal of this project is to research, test and implement a templeted codebase using Three.js which allows designers to load and interact with Rhino .3dm files in a lightweight stand-alone web application.
 
-The goal of this project is to define a minimal framework for implementing a UI, loading a model, accessing model infromation and establishing interactivity between the UI and model. Our hope is that this framework acts as a starting point for users to build out more complex applications unique to their projects needs. In support of that goal, we have worked to create a series of different frameworks, these different approaches have been siloed to seperate repositories where they can be cloned. Additionally, we have strived to include some initial UI components that capture some key model interactions (layer table, sun controls, etc.) and have included these components in each framework's default setup.
+Research done to-date focuses around the 'building blocks' of the site, including loading a .3dm model, accessing the model data, and implementing a UI which is linked to the loaded models and data. Our aim was to develop these core elements so that users have a jumping off point to develop more unique applications that fit their project needs. 
 
+Currently, we have worked to develop three different 'entry points' to the application by implementing Three.js alongside different popular Javascript frameworks. Each of these implementations can be found in companion repositories with their respective frameworks and these repositories are listed below. To-date, IDM-Vanilla and IDM-R3F are the most developed repos and should be the first point of reference. Our hope is to continue development of these repositories, and potentially develop new ones for other popular frameworks such as Vue and Svelte as possible.
 
-> Code-bases and examples are currently held in unique repositories while under development: <br/>
-> [Vanilla](https://github.com/PW-SEA-CoDe/IDM-Vanilla) | [React](https://github.com/PW-SEA-CoDe/IDM-React) | [React Three Fiber](https://github.com/PW-SEA-CoDe/IDM-R3F)
+> Code-bases and examples are currently held in unique repositories: <br/>
+> [IDM-Vanilla (Three.js / Vanilla JS)](https://github.com/PW-SEA-CoDe/IDM-Vanilla) | [IDM-React (Three.js / React)](https://github.com/PW-SEA-CoDe/IDM-React) | [IDM-R3F (React / React-Three-Fiber)](https://github.com/PW-SEA-CoDe/IDM-R3F)
 
-We hope that this project provides users with a manageable access point to create their own interactive 3D models and hope to continue developing the base capabilities associated with this project over time. 
+This ReadMe will be the primary resource for cataloguing our research to-date. Other more specific information related to each framework will be located in their respective respositories as needed.
 
 ### Contributors:
 
-[William Franklin](https://github.com/wmfranklin20)
-
-[Preston Pape](https://github.com/prxsto)
-
-### Tech Stack:
-- Javascript / [React](https://react.dev/)
-- [Three.js](https://threejs.org/)
-- [Vite](https://vitejs.dev/)
+[William Franklin](https://github.com/wmfranklin20) | [Preston Pape](https://github.com/prxsto)
 
 <details id="Quickstart" closed>
 <summary><h2>🚀 Quickstart</summary>
