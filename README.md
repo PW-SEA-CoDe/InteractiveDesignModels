@@ -96,7 +96,7 @@ Three.js's API is robust and covers a wide range of different components. The fu
 
 In order to create a model and scene which can be interacted with, Three.js provides a layered structure of elements which much be called and connected in the application. Below is a rough diagram explaing the flow of these elements, staring at tertiary levels where functions are adding control or flexibility to secondary elements, which define key elements that are visualized, and which depend on a few core elements to be rendered in the browser. 
 
-<img src='./assets/IDM-Three-Component-Tree.jpg' width='80%' title='Three.js Component Tree'>
+<img src='./assets/IDM_Three_Components.png' width='50%' title='Three.js Component Tree'>
 
 #### <ins>Core Elements
 
@@ -129,6 +129,52 @@ Once the core elements have been added to the project, a second level of critica
 ## 🖥️ Site Structure
 
 ### General Approach
+
+<img src='./assets/IDM-Site_Structure.png' width='50%' title='Basic Site Structure'>
+
+At the highest level there are effectively two ways to interact with the model through the web application:
+
+- <b>UI (HTML Elements)</b> - i.e. 'Click on this button to update the model/scene'
+- <b>Model (Three.js Scene)</b> - i.e. 'Click on this model to update the UI'
+
+These two 'layers' make up the root elements of the site in order to clearly locate and structure their respective function and components. Within each layer, we have tried to design a flexible structure through which users can quickly swap and test differnt UI components and model interaction as needed for their project.
+
+``` html
+<section id='ui'></section>      
+<section id='scene'></section>
+```
+#### <ins>UI Layer Structure
+
+The 'UI' layer is intended to be used as the root parent for all HTML elements added to the application. You can imagine this layer as a mini-site containing all HTML components which sits above the 'Model' canvas. 
+
+In general, the templates are designed so that the user can add 'containers' to the UI as needed. These containers act as the parent for unique sets of inputs, divs and any other HTML components desired. 
+
+Below is an example of the expected structure for a simple UI, adding a sidebar and footer with corresponding components for each container.
+
+``` html
+<section id='ui'>
+        <div id='sidebar-container'>
+                <div id='sb-foo-panel'></div>
+                <div id='sb-bar-panel'>
+                        <div id='sb-bar-title'>BAR</div>
+                        <input id='sb-bar-input'></input>
+                </div>
+                <div id='sb-baz-panel'></div>
+        </div>
+        <div id='footer-container'>
+                <div id='ft-foo-panel'></div>
+                <div id='ft-bar-panel'></div>
+        </div>
+</section>
+```
+#### <ins>UI Components
+
+In order to structure the templates for flexibility, the codebase is designed to use React-style components to plug-and-play with different UI containers, components and styles. 
+
+#### <ins>Model Layer Structure
+
+In terms of HTML rendering, the Model layer is primarly just the container which holds the Three.js scene. All means of interaction occur within the scene using Three.js components, specifically the Raycasting component. Further information about how the Raycaster operates can be found in the 'Project Structure' chapter below.
+
 
 ## 📦 Project Structure
 
