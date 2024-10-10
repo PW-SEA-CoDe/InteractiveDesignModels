@@ -29,6 +29,8 @@ This ReadMe will be the primary resource for cataloguing our research to-date. O
 
 #### <ins>What is Three.js?
 
+<img src='./assets/IDM-Project_Components.png' width='50%' title='Basic Site Structure'>
+
 [Three.js](https://threejs.org/) is a Javascript Application Programming Interface(API) which allows users to create 3D geometry in a web browser using [WebGL](https://www.khronos.org/webgl/). Three's high-level programming allows for users to more quickly create complex 3D scenes and objects and offers a wide range of features and flexibility.  Notably for this project, Three.js provides a range of 'out-of-the-box' model loaders for popular file types such as .gltf, .obj, and, most importantly for this project, .3dm. 
 
 #### <ins>Why Three.js?
@@ -125,6 +127,8 @@ Once the core elements have been added to the project, a second level of critica
 - Post-processing - Post-processing effects and styling
 
 ### Model Loading
+
+Section about loading model
 
 ## 🖥️ Site Structure
 
