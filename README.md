@@ -143,7 +143,7 @@ These two 'layers' make up the root elements of the site in order to clearly loc
 <section id='ui'></section>      
 <section id='scene'></section>
 ```
-#### <ins>UI Layer Structure
+### UI Layer Structure
 
 The 'UI' layer is intended to be used as the root parent for all HTML elements added to the application. You can imagine this layer as a mini-site containing all HTML components which sits above the 'Model' canvas. 
 
@@ -152,6 +152,8 @@ In general, the templates are designed so that the user can add 'containers' to 
 Below is an example of the expected structure for a simple UI, adding a sidebar and footer with corresponding components for each container.
 
 ``` html
+Example UI Layer 
+
 <section id='ui'>
         <div id='sidebar-container'>
                 <div id='sb-foo-panel'></div>
@@ -167,14 +169,29 @@ Below is an example of the expected structure for a simple UI, adding a sidebar 
         </div>
 </section>
 ```
-#### <ins>UI Components
+#### <ins>Dynamic UI Components
 
-In order to structure the templates for flexibility, the codebase is designed to use React-style components to plug-and-play with different UI containers, components and styles. 
+In order to structure the templates for flexibility, the codebase is designed to use React-style components to plug-and-play with different UI containers, components and styles. in IDM-Vanilla, these components are written as importable Javascript components, while in R3F, these are true React .jsx components. Each component has corresponding HTML and CSS variables which are returned to the main HTML file only when loaded, reducing the bloat in the initial HTML file.
 
-#### <ins>Model Layer Structure
+Container components created in the IDM-Vanilla repository include:
+
+- Sidebar (Current)
+- Taskbar
+- Floating Tab
+
+Further information on how these components are called and added to the overall project structure are provided below in the 'Project Structure' chapter.
+
+### Model Layer Structure
 
 In terms of HTML rendering, the Model layer is primarly just the container which holds the Three.js scene. All means of interaction occur within the scene using Three.js components, specifically the Raycasting component. Further information about how the Raycaster operates can be found in the 'Project Structure' chapter below.
 
+``` html
+Example 'Model' Layer
+
+<section id='scene'>
+        <scene></scene>
+</section>
+```
 
 ## 📦 Project Structure
 
@@ -188,8 +205,30 @@ Our goal in writing the codebases for this project was to allow maximum flexibil
 - Allows components to be called as-needed, reducing application overhead and un-used elements
 - Aligns components with Three.js component tree structure, to help uses intuit the development pipeline and expand their tree as needed
 
-#### <ins>Folder Structure
+#### <ins>File Structure
 
+There is some nuance to the different frameworks, but generally the organization of files is as follows:
+
+```
+IDM-Vanilla File Structure
+
+index.html
+index.css
+main.js
+model.js
+
+src/ ↴
+        scene/ ↴
+        model/ ↴
+        ui/ ↴
+        data/ ↴
+
+assets/ ↴
+        data/ ↴
+        icons/ ↴
+        models/ ↴
+ 
+```
 
 
 ### Framework Specific Structures
