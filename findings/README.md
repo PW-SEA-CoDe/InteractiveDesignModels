@@ -7,7 +7,7 @@
 - Developer experience is improved and simplified immensely
 - Bootstrapping an interactive design model for those with relatively no background in React is simple due to the library being declarative
 - Typically better performance over vanilla Javascript thanks to React's selective re-rendering
-- Debugging using *React Web Tools* is enjoyable to use
+- Debugging using [React Dev Tools](https://react.dev/learn/react-developer-tools) is enjoyable to use
 
 ## Best Practices
 
